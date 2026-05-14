@@ -1,0 +1,428 @@
+:root {
+  --navy: #222b3d;
+  --gold: #EBA800;
+  --red: #D32F2F;
+  --white: #FFFFFF;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.main-header {
+  max-width: auto;
+  background-color: var(--navy);
+  padding: 10px 0;
+  position: relative;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.header-flex {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0 80px;
+  transition: all 0.3s ease;
+}
+
+.logo img {
+  height: 100px;
+  transition: height 0.3s ease;
+}
+
+.nav-menu ul {
+  display: flex;
+  list-style: none;
+  gap: 30px;
+}
+
+.nav-menu a {
+  color: var(--white);
+  text-decoration: none;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 18px;
+  letter-spacing: 0.5px;
+  position: relative;
+  transition: all 0.3s ease;
+  padding-bottom: 5px;
+}
+
+.nav-menu a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -5px;
+  left: 0;
+  background-color: var(--gold);
+  transition: width 0.3s ease;
+}
+
+.nav-menu a:hover::after {
+  width: 100%;
+}
+
+.nav-menu a:hover {
+  color: var(--gold);
+}
+
+.header-tools {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.search-wrapper {
+  display: flex;
+  height: 45px;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 6px 15px;
+  border-radius: 20px;
+}
+
+.search-input {
+  border: none;
+  background: transparent;
+  color: white;
+  outline: none;
+  width: 150px;
+}
+
+.search-toggle-btn {
+  background: none;
+  border: none;
+  color: var(--gold);
+  cursor: pointer;
+  font-size: 1.1rem;
+}
+
+.auth-btn {
+  background: var(--gold);
+  min-width: 150px;
+  height: 45px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 0 20px;
+  transition: transform 0.2s;
+}
+
+.auth-btn:hover {
+  background: #ffc107;
+  transform: scale(1.03);
+}
+
+header svg {
+  width: 30px;
+  height: auto;
+}
+
+
+.burger-menu,
+.mobile-search-bar,
+.auth-icon {
+  display: none;
+}
+
+@media (max-width: 768px) {
+
+  .nav-menu,
+  .desktop-only,
+  .auth-text {
+    display: none !important;
+  }
+
+  .header-flex {
+    height: 60px;
+    padding: 0 15px;
+  }
+
+  .logo img {
+    height: 50px;
+  }
+
+  .burger-menu {
+    display: block;
+    background: none;
+    border: none;
+    font-size: 1.8rem;
+    color: var(--gold);
+    order: -1;
+  }
+
+  .auth-icon {
+    display: block;
+    font-size: 1.5rem;
+    color: var(--gold);
+  }
+
+  .auth-btn {
+    background: transparent;
+    padding: 5px;
+  }
+
+  .mobile-search-bar {
+    display: block;
+    background-color: var(--navy);
+    padding: 0 15px 12px 15px;
+  }
+
+  .mobile-search-bar .search-wrapper {
+    width: 100%;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  .mobile-search-bar input {
+    width: 100%;
+    border: none;
+    background: transparent;
+    padding: 8px 0;
+    outline: none;
+  }
+
+  .mobile-search-bar button {
+    background: none !important;
+    border: none !important;
+    padding: 0 !important;
+    outline: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+}
+
+
+/* МОДАЛЬНЕ ВІКНО РЕЄСТРАЦІЇ */
+
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    backdrop-filter: blur(4px);
+}
+
+.modal-content {
+    background: white;
+    padding: 30px;
+    margin: auto;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 400px;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+.auth-tabs {
+    display: flex;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #eee;
+}
+
+.tab-btn {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-weight: bold;
+    color: #999;
+}
+
+.tab-btn.active {
+    color: #ffc107; 
+    border-bottom: 2px solid #ffc107;
+}
+
+.auth-form {
+    display: none;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.auth-form.active {
+    display: flex;
+}
+
+.auth-form input {
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+}
+
+.auth-submit {
+    background: #ffc107;
+    border: none;
+    padding: 12px;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close-modal {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+}
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7); /* Напівпрозорий чорний */
+    backdrop-filter: blur(5px); /* Розмиття заднього фону */
+    
+    display: none; 
+    justify-content: center;
+    align-items: center;
+    
+    z-index: 9999;
+}
+
+.modal-content {
+    background: white;
+    padding: 40px;
+    border-radius: 20px;
+    width: 90%;
+    max-width: 400px;
+    position: relative;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+.close-modal {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 28px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #333;
+    line-height: 1;
+}
+
+/* КНОПКА ДЛЯ ПРОКРУТКИ СТОРІНКИ ВГОРУ*/
+
+#scrollToTop {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 999;
+    
+    background: white; 
+    border: 2px solid #ffc107; 
+    border-radius: 50%; 
+    
+    width: 50px; 
+    height: 50px; 
+    cursor: pointer;
+    
+    justify-content: center;
+    align-items: center;
+    
+    padding: 0;
+    transition: 0.3s;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+#scrollToTop svg {
+    width: 24px;  
+    height: 24px;
+    transition: transform 0.3s;
+}
+
+#scrollToTop:hover {
+    background-color: #ffc107;
+    transform: scale(1.1);
+}
+
+#scrollToTop:hover svg path {
+    fill: white; 
+}
+
+
+.cart-btn-overlay:hover {
+    transform: scale(1.1); /* Ефект при наведенні */
+}
+
+.cart-btn-overlay svg {
+    width: 30px;
+    height: 30px;
+}
+.cart-btn-overlay {
+    position: fixed; 
+    right: 20px;    
+    bottom: 90px;   
+    z-index: 1000;   
+    
+    background-color: #f3c458; 
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    transition: transform 0.3s ease;
+}
+
+.cart-btn-overlay:hover {
+   background-color: #ffb100;
+}
+
+/* Налаштування іконки та лічильника */
+.cart-btn-overlay svg {
+    width: 30px;
+    height: 30px;
+}
+
+.cart-count-overlay {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background: red;
+    color: white;
+    border-radius: 50%;
+    padding: 2px 6px;
+    font-size: 12px;
+    font-weight: bold;
+}

@@ -1,0 +1,182 @@
+/* Основний контейнер секції */
+.news-section {
+    padding: 60px 0;
+    background-color: #fcfcfc; /* Світлий фон як під меню */
+}
+
+.section-title {
+    text-align: center;
+    font-size: 32px;
+    font-weight: 800;
+    margin-bottom: 40px;
+    color: #1a1a1a;
+    text-transform: uppercase;
+}
+
+.news-wrapper {
+    display: flex;
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+    background: #fff;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05); /* М'яка тінь як у карток піци */
+}
+
+/* Список новин зліва */
+.news-list {
+    flex: 0 0 350px;
+    border-right: 1px solid #eee;
+    padding-right: 15px;
+    max-height: 600px;
+    overflow-y: auto;
+}
+
+/* Стилізація окремої картки в списку */
+.news-item {
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
+}
+
+.news-item:hover {
+    background: #fdf2f2; /* Легкий червонуватий відтінок при наведенні */
+    transform: translateX(5px);
+}
+
+.news-item.active {
+    background: #fff;
+    border-color: #e63946; /* Червоний бортик активної новини */
+    box-shadow: 0 4px 15px rgba(230, 57, 70, 0.1);
+}
+
+.news-item .meta {
+    font-size: 12px;
+    color: #888;
+    margin-bottom: 5px;
+}
+
+.news-item .title {
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+    line-height: 1.4;
+}
+
+/* Важливі новини (червоний акцент як у кнопках) */
+.news-item.important .title {
+    color: #e63946;
+    font-weight: 700;
+}
+
+/* Права частина: відображення новини */
+.news-display {
+    flex: 1;
+    padding: 20px 40px;
+}
+
+.news-display h2 {
+    color: #1d1d1d;
+    font-size: 28px;
+    font-weight: 800;
+    margin-bottom: 15px;
+}
+
+.news-display .news-info {
+    font-size: 14px;
+    color: #888;
+    margin-bottom: 25px;
+    display: flex;
+    gap: 20px;
+}
+
+.news-display hr {
+    border: none;
+    border-top: 2px solid #f8f8f8;
+    margin: 20px 0;
+}
+
+.news-display p {
+    font-size: 17px;
+    line-height: 1.8;
+    color: #444;
+}
+
+/* Кнопка "Більше" */
+.btn-more {
+    display: block;
+    margin: 40px auto 0;
+    background: #ffb100; /* Жовтий як кнопка "Увійти" */
+    color: #000;
+    border: none;
+    padding: 12px 35px;
+    border-radius: 50px;
+    font-weight: 700;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-more:hover {
+    background: #e63946; /* Зміна на червоний при наведенні */
+    color: #fff;
+    transform: translateY(-2px);
+}
+
+/* Плейсхолдер */
+.placeholder-text {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    color: #bbb;
+    font-style: italic;
+    font-size: 18px;
+}
+
+
+
+.stats-container {
+    background: #ffffff;
+    border-radius: 15px; /* Як у твоїх карток меню */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08); /* М'яка тінь */
+    padding: 30px;
+    margin: 40px auto;
+    max-width: 900px;
+}
+
+.chart-controls {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+/* Кнопки вибору графіка у стилі твоїх кнопок "Купити" та "Увійти" */
+.btn-chart {
+    padding: 12px 25px;
+    border-radius: 50px;
+    border: 2px solid #ffb100;
+    background: transparent;
+    color: #1a1a1a;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-chart.active {
+    background: #ffb100; /* Жовтий як кнопка "Увійти" */
+    color: #fff;
+}
+
+.btn-chart:hover {
+    background: #d59605; /* Червоний як кнопка "Спробувати" на банері */
+    border-color: #ffb100;
+    color: #fff;
+}

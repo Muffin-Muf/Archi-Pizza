@@ -1,0 +1,329 @@
+/* --- ОСНОВНИЙ КОНТЕЙНЕР --- */
+.product-container {
+    max-width: 1100px; /* Зменшено для компактності */
+    margin: 40px auto;
+    padding: 0 20px;
+    font-family: 'Montserrat', sans-serif;
+    display: flex;
+    flex-direction: column;
+}
+
+/* --- ВЕРХНЯ СЕКЦІЯ (ПІЦА + ТЕКСТ) --- */
+.product-main-info {
+    display: flex;
+    align-items: flex-start;
+    gap: 50px; /* Оптимальна відстань */
+    width: 100%;
+    margin-bottom: 60px;
+}
+
+/* ЛІВА ЧАСТИНА: ПІЦА */
+.product-left {
+    flex: 0 0 50%; /* Займає рівно половину */
+    display: flex;
+    justify-content: center;
+}
+
+.pizza-frame {
+    background: #ffffff;
+    border-radius: 50px; 
+    padding: 20px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.05); /* М'яка велика тінь */
+    line-height: 0;
+}
+
+.main-img {
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+    border-radius: 40px;
+    transition: transform 0.4s ease;
+}
+
+.main-img:hover {
+    transform: scale(1.03);
+}
+
+/* ПРАВА ЧАСТИНА: ТЕКСТ ТА ПРИДБАННЯ */
+.product-right {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.product-right h1 {
+    font-size: 48px; /* Солідний розмір */
+    font-weight: 800;
+    color: #1D2D50; 
+    margin: 0 0 15px 0;
+}
+
+.product-description {
+    font-size: 17px;
+    line-height: 1.6;
+    color: #555;
+    margin-bottom: 30px;
+    max-width: 450px;
+}
+
+/* БЛОК КУПІВЛІ (Purchase Box) - заповнює білий простір */
+.purchase-box {
+    background: #fdfdfd;
+    border: 1px solid #f0f2f5;
+    border-radius: 30px;
+    padding: 35px;
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.02);
+}
+
+.product-meta {
+    display: flex;
+    align-items: baseline;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.product-price {
+    font-size: 42px;
+    font-weight: 900;
+    color: #1D2D50;
+}
+
+#pizza-weight {
+    font-size: 20px;
+    color: #999;
+}
+
+.product-quantity-control {
+    display: flex;
+    align-items: center;
+    background: #f0f2f5;
+    border-radius: 12px;
+    width: fit-content;
+    padding: 6px;
+    margin-bottom: 25px;
+}
+
+.product-quantity-control button {
+    border: none;
+    background: #fff;
+    width: 35px;
+    height: 35px;
+    border-radius: 8px;
+    font-size: 20px;
+    cursor: pointer;
+    color: #1D2D50;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+#product-qty-value {
+    font-weight: 700;
+    padding: 0 20px;
+    font-size: 18px;
+}
+
+.buy-btn {
+    background: #d33535;
+    color: #fff;
+    padding: 18px;
+    border: none;
+    font-size: 16px;
+    font-weight: 800;
+    border-radius: 15px;
+    cursor: pointer;
+    width: 100%;
+    text-transform: uppercase;
+    transition: 0.3s;
+    margin-bottom: 15px;
+}
+
+.buy-btn:hover {
+    background: #b52a2a;
+    transform: translateY(-2px);
+}
+
+.scroll-to-addons {
+    background: transparent;
+    color: #ff9d2e;
+    border: 2px solid #ff9d2e;
+    padding: 12px;
+    border-radius: 15px;
+    width: 100%;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.scroll-to-addons:hover {
+    background: #ff9d2e;
+    color: #fff;
+}
+
+/* --- СЕКЦІЯ ДОДАТКІВ --- */
+/* --- СЕКЦІЯ ДОДАТКІВ (НИЖНЯ ЧАСТИНА) --- */
+.addons-section {
+    width: 100%;
+    margin-top: 60px;
+    padding-top: 60px;
+    border-top: 2px solid #f0f2f5;
+    scroll-margin-top: 30px; /* Для плавного скролу кнопкою */
+}
+
+.addons-section h3 {
+    font-size: 32px;
+    font-weight: 800;
+    color: #1D2D50;
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+/* Блоки категорій (Начинка / Соуси) */
+.category-block {
+    margin-bottom: 60px;
+}
+
+.category-subtitle {
+    font-size: 14px;
+    text-transform: uppercase;
+    color: #a0a0a0;
+    font-weight: 800;
+    letter-spacing: 2px;
+    margin-bottom: 30px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+/* Лінія поруч із підзаголовком для заповнення простору */
+.category-subtitle::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: #eee;
+}
+
+.addons-section {
+    width: 100%;
+    max-width: 1300px;
+    margin: 60px auto;
+    padding: 40px; /* Відступи від країв контейнера до карток */
+}
+
+/* Сітка додатків */
+.addons-grid {
+    display: grid;
+    /* Картки стають у ряд і автоматично переносяться */
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 25px;
+}
+
+/* Картка додатка */
+.addon-card {
+    background: #ffffff;
+    border: 1px solid #eef0f2;
+    border-radius: 25px;
+    padding: 25px 15px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 200px;
+}
+
+/* Ефект при наведенні */
+.addon-card:hover {
+    border-color: #ff9d2e;
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px rgba(255, 157, 46, 0.1);
+}
+
+/* Стиль для обраного додатка */
+.addon-card.active {
+    border-color: #ff9d2e;
+    background-color: #fffaf5;
+    box-shadow: 0 10px 25px rgba(255, 157, 46, 0.15);
+}
+
+/* Зображення інгредієнтів */
+.addon-card img {
+    width: 70px;
+    height: 70px;
+    object-fit: contain;
+    margin-bottom: 15px;
+    filter: drop-shadow(0 5px 10px rgba(0,0,0,0.05));
+}
+
+/* Назва додатка */
+.addon-card p {
+    font-weight: 700;
+    font-size: 16px;
+    color: #1D2D50;
+    margin: 0 0 8px 0;
+}
+
+/* Ціна та вага */
+.addon-card strong {
+    font-size: 13px;
+    color: #d33535;
+    background: #fff0f0;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-weight: 700;
+}
+
+/* Адаптація під мобільні пристрої */
+@media (max-width: 600px) {
+    .addons-grid {
+        grid-template-columns: repeat(2, 1fr); /* По 2 в ряд */
+        gap: 15px;
+    }
+
+    .addon-card {
+        min-height: 170px;
+        padding: 15px 10px;
+    }
+
+    .addon-card img {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .addons-section h3 {
+        font-size: 24px;
+    }
+}
+
+/* АДАПТИВНІСТЬ */
+@media (max-width: 900px) {
+    .product-main-info {
+        flex-direction: column;
+        align-items: center;
+    }
+    .product-left, .purchase-box {
+        max-width: 100%;
+        flex: none;
+    }
+}
+
+/* Стиль кнопки, коли товар вже у кошику */
+.buy-btn.in-cart {
+    background-color: #ccc !important; /* Сірий колір */
+    color: #666 !important;            /* Темно-сірий текст */
+    cursor: not-allowed;               /* Курсор заборони */
+    border: none;
+    box-shadow: none;                  /* Прибираємо тінь */
+    transform: none !important;        /* Прибираємо анімацію підстрибування */
+}
+
+.buy-btn.in-cart:hover {
+    background-color: #ccc !important; /* Щоб при наведенні не змінювався колір */
+    transform: none !important;
+}
