@@ -78,7 +78,7 @@ if (closeSidebar) {
 const db = {
     async saveUser(user) {
         try {
-            const checkResponse = await fetch(`http:https://archi-pizza.onrender.com/users?login=${user.login}`);
+            const checkResponse = await fetch(`https://archi-pizza.onrender.com/users?login=${user.login}`);
             const existingUsers = await checkResponse.json();
 
             if (existingUsers.length > 0) {
