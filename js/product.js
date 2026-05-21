@@ -16,7 +16,7 @@ async function initProduct() {
 
     try {
         // Робимо запит до бекенду по конкретному ID продукту
-        const response = await fetch(`http://localhost:3000/products/${pizzaId}`);
+        const response = await fetch(`https://archi-pizza.onrender.com/products/${pizzaId}`);
         
         if (!response.ok) {
             throw new Error(`Продукт з ID ${pizzaId} не знайдено на сервері`);

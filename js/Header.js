@@ -78,7 +78,7 @@ if (closeSidebar) {
 const db = {
     async saveUser(user) {
         try {
-            const checkResponse = await fetch(`http://localhost:3000/users?login=${user.login}`);
+            const checkResponse = await fetch(`http:https://archi-pizza.onrender.com/users?login=${user.login}`);
             const existingUsers = await checkResponse.json();
 
             if (existingUsers.length > 0) {
@@ -87,7 +87,7 @@ const db = {
             }
 
             const newUser = { ...user, role: "user" };
-            const response = await fetch('http://localhost:3000/users', {
+            const response = await fetch('https://archi-pizza.onrender.com/users', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(newUser)
@@ -107,11 +107,11 @@ const db = {
 
     async getUser(loginOrEmail, password) {
         try {
-            let response = await fetch(`http://localhost:3000/users?login=${loginOrEmail}`);
+            let response = await fetch(`https://archi-pizza.onrender.com/users?login=${loginOrEmail}`);
             let users = await response.json();
 
             if (users.length === 0) {
-                response = await fetch(`http://localhost:3000/users?email=${loginOrEmail}`);
+                response = await fetch(`https://archi-pizza.onrender.com/users?email=${loginOrEmail}`);
                 users = await response.json();
             }
 

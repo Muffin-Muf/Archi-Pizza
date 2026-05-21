@@ -8,7 +8,7 @@ const newsPerPage = 4;
 
 async function fetchNews(page = 1) {
     try {
-        const response = await fetch(`http://localhost:3000/news`);
+        const response = await fetch(`https://archi-pizza.onrender.com/news`);
         
         if (!response.ok) {
             throw new Error('Помилка при отриманні новин');

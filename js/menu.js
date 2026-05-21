@@ -11,7 +11,7 @@ let previewContainer = document.getElementById('preview-container');
 // ================= ЗАВАНТАЖЕННЯ ДАНИХ З СЕРВЕРА =================
 async function fetchProducts() {
     try {
-        const response = await fetch('http://localhost:3000/products');
+        const response = await fetch('https://archi-pizza.onrender.com/products');
         if (!response.ok) throw new Error('Помилка завантаження товарів');
         
         products = await response.json();
@@ -462,11 +462,11 @@ function setupAdminFormListeners() {
                 sizes: finalSizes
             };
 
-            let url = 'http://localhost:3000/products';
+            let url = 'https://archi-pizza.onrender.com/products';
             let method = 'POST';
 
             if (id) {
-                url = `http://localhost:3000/products/${id}`;
+                url = `https://archi-pizza.onrender.com/products/${id}`;
                 method = 'PUT';
             }
 
@@ -577,7 +577,7 @@ window.editProduct = async function(id, event) {
     if (container) container.innerHTML = ""; // очищаємо
 
     try {
-        const response = await fetch(`http://localhost:3000/products/${id}`);
+        const response = await fetch(`https://archi-pizza.onrender.com/products/${id}`);
         if (!response.ok) throw new Error("Не вдалося завантажити дані товару");
         const product = await response.json();
 
@@ -613,7 +613,7 @@ window.deleteProduct = async function(id, event) {
     if (event) event.stopPropagation();
     if (confirm(`Ви впевнені, що хочете видалити товар з ID: ${id}?`)) {
         try {
-            const response = await fetch(`http://localhost:3000/products/${id}`, { method: 'DELETE' });
+            const response = await fetch(`https://archi-pizza.onrender.com/products/${id}`, { method: 'DELETE' });
             if (response.ok) {
                 alert("Товар успішно видалено!");
                 window.location.reload();

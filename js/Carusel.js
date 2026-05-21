@@ -10,7 +10,7 @@ let slideInterval;
 
 async function fetchBanners() {
     try {
-        const response = await fetch('http://localhost:3000/banners');
+        const response = await fetch('https://archi-pizza.onrender.com/banners');
         
         if (!response.ok) {
             throw new Error('Помилка завантаження даних');
