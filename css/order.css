@@ -1,4 +1,17 @@
 /* Стилізація сторінки оформлення замовлення */
+
+/* Прибираємо ліву акцентну смужку біля заголовків на сторінці замовлення */
+.checkout-step-block h1,
+.checkout-step-block h2 {
+    border-left: none !important;  /* Скасовуємо ліву рамку */
+    padding-left: 0 !important;    /* Прибираємо внутрішній відступ ліворуч, щоб текст не зміщувався */
+}
+
+/* Підстраховка на випадок, якщо лінія створена через псевдоелемент ::before */
+.checkout-step-block h1::before,
+.checkout-step-block h2::before {
+    display: none !important;       /* Повністю ховаємо псевдоелемент */
+}
     .checkout-container {
         max-width: 800px;
         margin: 40px auto;

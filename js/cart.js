@@ -79,7 +79,7 @@ window.renderCart = function () {
         window.checkCartStatus();
     }
 
-    if (totalDisplay) totalDisplay.innerText = totalSum + " game грн";
+    if (totalDisplay) totalDisplay.innerText = totalSum + " грн";
 
     let buyBtn = document.querySelector('.buy-btn');
     if (buyBtn && typeof currentPizza !== 'undefined' && currentPizza !== null) {

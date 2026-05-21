@@ -119,12 +119,12 @@
 
         <div class="checkout-steps">
             <div class="step-indicator active" id="ind-step-1">1. Перевірка кошика</div>
-            <div class="step-indicator" id="ind-step-2">2. Дані доставки та оплати</div>
+            <div class="step-indicator" id="ind-step-2">2. Оформлення замовлення</div>
         </div>
 
         <div class="checkout-step-block active" id="checkout-block-1">
             <h2 class="category-group-title"
-                style="border-left: 6px solid var(--archi-gold, #EBA800); padding-left: 15px;">Ваше замовлення</h2>
+                style="padding-left: 15px;">Перевірка кошика</h2>
 
             <div id="checkout-items-list"></div>
 
@@ -135,124 +135,176 @@
         </div>
 
         <div class="checkout-step-block" id="checkout-block-2">
-            <h2 class="category-group-title"
-                style="border-left: 6px solid var(--archi-gold, #EBA800); padding-left: 15px;">Куди доставити?</h2>
+            <h2 class="category-group-title">Оформлення замовлення</h2>
 
-<form id="final-order-form">
-  
-  <div class="form-group">
-    <label for="order-surname">Прізвище *</label>
-    <input type="text" id="order-surname" class="form-control" placeholder="Введіть прізвище" required>
-  </div>
+            <form id="final-order-form">
 
-  <div class="form-group">
-    <label for="order-name">Ім'я *</label>
-    <input type="text" id="order-name" class="form-control" placeholder="Введіть ім'я" required>
-  </div>
+                <div class="form-group">
+                    <label for="order-surname">Прізвище *</label>
+                    <input type="text" id="order-surname" class="form-control" placeholder="Введіть прізвище" required>
+                </div>
 
-  <div class="form-group">
-    <label for="order-phone">Номер телефону *</label>
-    <input type="tel" id="order-phone" class="form-control" placeholder="+380" required>
-  </div>
+                <div class="form-group">
+                    <label for="order-name">Ім'я *</label>
+                    <input type="text" id="order-name" class="form-control" placeholder="Введіть ім'я" required>
+                </div>
 
-  <div class="form-group">
-    <label for="order-delivery-type">Спосіб отримання *</label>
-    <select id="order-delivery-type" class="form-control">
-      <option value="delivery">Кур'єрська доставка</option>
-      <option value="pickup">Самовивіз із піцерії</option>
-    </select>
-  </div>
+                <div class="form-group">
+                    <label for="order-phone">Номер телефону *</label>
+                    <input type="tel" id="order-phone" class="form-control" placeholder="+380" required>
+                </div>
 
-  <div id="address-fields-wrapper">
-    <div class="form-group">
-      <label for="order-address">Адреса доставки (Вулиця та номер будинку) *</label>
-      <input type="text" id="order-address" class="form-control" placeholder="вул. Головна, буд. 12" required>
-    </div>
+                <div class="form-group">
+                    <label for="order-delivery-type">Спосіб отримання *</label>
+                    <select id="order-delivery-type" class="form-control">
+                        <option value="delivery">Кур'єрська доставка</option>
+                        <option value="pickup">Самовивіз із піцерії</option>
+                    </select>
+                </div>
 
-    <div class="form-group">
-      <label for="order-flat">Кв / Офіс / Під'їзд</label>
-      <input type="text" id="order-flat" class="form-control" placeholder="Наприклад: кв. 45, під'їзд 2">
-    </div>
+                <div id="address-fields-wrapper">
+                    <div class="form-group">
+                        <label for="order-address">Адреса доставки (Вулиця та номер будинку) *</label>
+                        <input type="text" id="order-address" class="form-control" placeholder="вул. Головна, буд. 12"
+                            required>
+                    </div>
 
-    <div class="form-group">
-      <label for="order-payment">Спосіб оплати *</label>
-      <select id="order-payment" class="form-control">
-        <option value="cash">Готівкою</option>
-        <option value="card">Карткою на сайті</option>
-      </select>
-    </div>
-  </div>
+                    <div class="form-group">
+                        <label for="order-flat">Кв / Офіс / Під'їзд</label>
+                        <input type="text" id="order-flat" class="form-control"
+                            placeholder="Наприклад: кв. 45, під'їзд 2">
+                    </div>
 
-  <div class="form-group">
-    <label for="order-comment">Коментар до замовлення</label>
-    <textarea id="order-comment" class="form-control" rows="3" placeholder="Додаткові побажання (гостра, без цибулі, номер коду на дверях...)" style="resize: vertical;"></textarea>
-  </div>
+                    <div class="form-group">
+                        <label for="order-payment">Спосіб оплати *</label>
+                        <select id="order-payment" class="form-control">
+                            <option value="cash">Готівкою</option>
+                            <option value="card">Карткою на сайті</option>
+                        </select>
+                    </div>
+                </div>
 
-  <div class="checkout-actions">
-    <button type="button" class="btn-back" id="backToStep1">← Назад до кошика</button>
-    <button type="submit" class="btn-submit">Надіслати замовлення 🍕</button>
-  </div>
+                <div class="form-group">
+                    <label for="order-comment">Коментар до замовлення</label>
+                    <textarea id="order-comment" class="form-control" rows="3"
+                        placeholder="Додаткові побажання (гостра, без цибулі, номер коду на дверях...)"
+                        style="resize: vertical;"></textarea>
+                </div>
 
-</form>
+                <div class="checkout-actions">
+                    <button type="button" class="btn-back" id="backToStep1">← Назад до кошика</button>
+                    <button type="submit" class="btn-submit">Надіслати замовлення</button>
+                </div>
+
+            </form>
         </div>
 
     </main>
 
-<footer class="main-footer">
-  <div class="footer-container">
-    
-    <div class="footer-col footer-about">
-      <a href="/" class="footer-logo">
-        <img src="img/ARCHIPIZZA LOGO.png" alt="Archi-Pizza Logo">
-      </a>
-      <h1 class="footer-tagline">Archi-Pizza чекає на тебе!</h1>
-    </div>
 
-    <div class="footer-col footer-links">
-      <h3>Навігація</h3>
-      <ul>
-        <li><a href="menu.html">Меню</a></li>
-        <li><a href="#news">Новини</a></li>
-        <li><a href="#delivery">Доставка і оплата</a></li>
-        <li><a href="#contacts">Контакти</a></li>
-      </ul>
-    </div>
 
-<div class="footer-col footer-contacts-col">
-      <h3>Контакти</h3>
-      <div class="footer-contacts-list">
-        <p class="phone-link"><a href="tel:+380991234567">+38 (099) 123-45-67</a></p>
-        <p class="phone-link"><a href="tel:+380671234567">+38 (067) 123-45-67</a></p>
-        
-        <div class="footer-work-hours">
-          <h3 class="hours-label">Години роботи:</h3>
-          <p class="work-time">Щодня: 10:00 — 21:00</p>
+
+    <div id="profile-sidebar" class="sidebar">
+
+        <div class="account-header">
+            <h2>Мій акаунт</h2>
+            <button id="closeSidebar" class="close-btn">&times;</button>
         </div>
-      </div>
+
+        <div class="sidebar-content">
+
+            <div class="user-profile-summary">
+                <div class="user-avatar">👤</div>
+                <div class="user-meta-text">
+                    <h3 id="sidebar-login">...</h3>
+                    <span id="sidebar-email">...</span>
+                    <span id="sidebar-role" class="role-badge">...</span>
+                </div>
+            </div>
+
+            <nav class="account-menu">
+                <ul>
+                    <li>
+                        <a href="#order-history" onclick="window.openOrderHistory(event)">
+                            <span class="menu-icon">📦</span> Історія замовлень
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#bonus-program">
+                            <span class="menu-icon">✨</span> Бонусна програма
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#account-settings">
+                            <span class="menu-icon">⚙️</span> Налаштування профілю
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#support-chat">
+                            <span class="menu-icon">💬</span> Служба підтримки
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+            <div class="account-footer">
+                <button id="logoutBtn" class="logout-button">Вийти з акаунту</button>
+            </div>
+
+        </div>
     </div>
 
-    <div class="footer-col footer-map-block">
-      <h3>Ми на карті</h3>
-      <div class="footer-map-wrapper">
-        <iframe 
-          src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d634.2664855534107!2d30.19973870759607!3d50.51433984349704!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x472b31c0af970a85%3A0xaed3bd998cfcd11a!2sArchi-Pizza!5e0!3m2!1sru!2sus!4v1779367988903!5m2!1sru!2sus" 
-          width="100%" 
-          height="150" 
-          style="border:0;" 
-          allowfullscreen="" 
-          loading="lazy" 
-          referrerpolicy="no-referrer-when-downgrade">
-        </iframe>
-      </div>
-      <p class="footer-address">вул.К.Білокур, Ірпінь, Київська область, Украина, 08205</p>
-    </div>
+    <footer class="main-footer">
+        <div class="footer-container">
 
-  </div>
+            <div class="footer-col footer-about">
+                <a href="/" class="footer-logo">
+                    <img src="img/ARCHIPIZZA LOGO.png" alt="Archi-Pizza Logo">
+                </a>
+                <h1 class="footer-tagline">Archi-Pizza чекає на тебе!</h1>
+            </div>
 
-  <div class="footer-bottom">
-    <p>© 2026 Archi-Pizza. Усі права захищені. Розробка ChNU.</p>
-  </div>
-</footer>
+            <div class="footer-col footer-links">
+                <h3>Навігація</h3>
+                <ul>
+                    <li><a href="menu.html">Меню</a></li>
+                    <li><a href="#news">Новини</a></li>
+                    <li><a href="#delivery">Доставка і оплата</a></li>
+                    <li><a href="#contacts">Контакти</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col footer-contacts-col">
+                <h3>Контакти</h3>
+                <div class="footer-contacts-list">
+                    <p class="phone-link"><a href="tel:+380991234567">+38 (099) 123-45-67</a></p>
+                    <p class="phone-link"><a href="tel:+380671234567">+38 (067) 123-45-67</a></p>
+
+                    <div class="footer-work-hours">
+                        <h3 class="hours-label">Години роботи:</h3>
+                        <p class="work-time">Щодня: 10:00 — 21:00</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-col footer-map-block">
+                <h3>Ми на карті</h3>
+                <div class="footer-map-wrapper">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d634.2664855534107!2d30.19973870759607!3d50.51433984349704!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x472b31c0af970a85%3A0xaed3bd998cfcd11a!2sArchi-Pizza!5e0!3m2!1sru!2sus!4v1779367988903!5m2!1sru!2sus"
+                        width="100%" height="150" style="border:0;" allowfullscreen="" loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+                <p class="footer-address">вул.К.Білокур, Ірпінь, Київська область, Украина, 08205</p>
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            <p>© 2026 Archi-Pizza. Усі права захищені. Розробка ChNU.</p>
+        </div>
+    </footer>
 
 </body>
 <script src="/js/Header.js"></script>

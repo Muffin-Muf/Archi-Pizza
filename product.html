@@ -257,20 +257,55 @@
         </svg></button>
 
 
-    <div id="profile-sidebar" class="sidebar">
-        <div class="sidebar-content">
-            <span id="closeSidebar" class="close-btn">&times;</span>
-            <h2>Мій акаунт</h2>
-            <hr>
-            <div class="user-info">
-                <p><strong>Логін:</strong> <span id="sidebar-login"></span></p>
-                <p><strong>Email:</strong> <span id="sidebar-email"></span></p>
-                <p><strong>Роль:</strong> <span id="sidebar-role"></span></p>
-            </div>
-            <hr>
-            <button id="logoutBtn" class="logout-button">Вийти з акаунту</button>
-        </div>
+<div id="profile-sidebar" class="sidebar">
+  
+  <div class="account-header">
+    <h2>Мій акаунт</h2>
+    <button id="closeSidebar" class="close-btn">&times;</button>
+  </div>
+
+  <div class="sidebar-content">
+    
+    <div class="user-profile-summary">
+      <div class="user-avatar">👤</div>
+      <div class="user-meta-text">
+        <h3 id="sidebar-login">...</h3>
+        <span id="sidebar-email">...</span>
+        <span id="sidebar-role" class="role-badge">...</span>
+      </div>
     </div>
+
+    <nav class="account-menu">
+      <ul>
+        <li>
+          <a href="#order-history" onclick="window.openOrderHistory(event)">
+            <span class="menu-icon">📦</span> Історія замовлень
+          </a>
+        </li>
+        <li>
+          <a href="#bonus-program">
+            <span class="menu-icon">✨</span> Бонусна програма
+          </a>
+        </li>
+        <li>
+          <a href="#account-settings">
+            <span class="menu-icon">⚙️</span> Налаштування профілю
+          </a>
+        </li>
+        <li>
+          <a href="#support-chat">
+            <span class="menu-icon">💬</span> Служба підтримки
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+    <div class="account-footer">
+      <button id="logoutBtn" class="logout-button">Вийти з акаунту</button>
+    </div>
+
+  </div>
+</div>
 
 <footer class="main-footer">
   <div class="footer-container">
@@ -332,5 +367,6 @@
 <script src="/js/menu.js"></script>
 <script src="/js/Header.js"></script>
 <script src="/js/product.js"></script>
+<script src="/js/cart.js"></script>
 
 </html>

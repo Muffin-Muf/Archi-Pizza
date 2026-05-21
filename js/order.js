@@ -84,9 +84,6 @@ document.addEventListener('DOMContentLoaded', () => {
         };
 
         console.log("Замовлення успішно сформовано для Archi-Pizza:", orderData);
-        
-        // Тут твій майбутній POST запит:
-        // await fetch('http://localhost:3000/orders', { method: 'POST', body: JSON.stringify(orderData) });
 
         alert(`Дякуємо, ${orderData.customerName}! Ваше замовлення прийнято. ${deliveryType === 'delivery' ? "Кур'єр вже збирається! 🛵" : "Очікуємо на Вас у піцерії! 🍕"}`);
         
@@ -98,7 +95,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-// ФУНКЦІЯ ВИВЕДЕННЯ ТОВАРІВ НА СТОРІНЦІ ОФОРМЛЕННЯ
+// ФУНКЦІЯ ВИВЕДЕННЯ ТОВАРІВ НА СТОРІНЦІ ОФОРМЛЕННЯ (З ПІДТРИМКОЮ ДОДАТКІВ)
 function renderCheckoutList() {
     const container = document.getElementById('checkout-items-list');
     const totalDisplay = document.getElementById('checkout-total');
@@ -118,13 +115,22 @@ function renderCheckoutList() {
         let itemSum = item.price * item.quantity;
         totalSum += itemSum;
 
+        // ДИНАМІЧНА ПЕРЕВІРКА ТА ГЕНЕРАЦІЯ ДОДАТКІВ
+        let addonsHtml = "";
+        if (item.addons && item.addons.length > 0) {
+            addonsHtml = `
+                <div class="checkout-item-addons" style="font-size: 0.85rem; color: #718096; margin-top: 4px; font-weight: 500;">
+                    <strong>Додатки:</strong> ${item.addons.join(', ')}
+                </div>
+            `;
+        }
+
         container.innerHTML += `
             <div class="checkout-item">
                 <img src="${item.img}" alt="${item.name}">
                 <div class="checkout-item-info">
                     <h4>${item.name}</h4>
-                    <span style="color: var(--archi-navy); font-weight:700;">${item.price} грн</span>
-                </div>
+                    ${addonsHtml} </div>
                 
                 <div class="card-qty-picker" style="margin-right: 20px;">
                     <button onclick="changeCheckoutQty(${index}, -1)">-</button>

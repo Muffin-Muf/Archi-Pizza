@@ -181,3 +181,33 @@ function scrollToAddons() {
         });
     }
 }
+
+// ================= ПЕРЕХІД ДО ОФОРМЛЕННЯ ЗАМОВЛЕННЯ =================
+window.checkout = function() {
+    // 1. Перевіряємо, чи є взагалі товари у кошику
+    let cartStr = localStorage.getItem('archi_cart');
+    let cart = cartStr ? JSON.parse(cartStr) : [];
+
+    if (cart.length === 0) {
+        alert("Ваш кошик порожній! Додайте піцу або напої перед оформленням.");
+        return;
+    }
+
+    // 2. Перевіряємо, чи авторизований користувач (підстраховка)
+    const user = JSON.parse(sessionStorage.getItem('current_user'));
+    
+    if (!user) {
+        alert("Для оформлення замовлення, будь ласка, увійдіть у свій акаунт.");
+        // Якщо не зайшов — автоматично відкриваємо твою модалку входу
+        if (typeof toggleAuthModal === 'function') {
+            toggleAuthModal();
+        } else {
+            let authModal = document.getElementById('auth-modal');
+            if (authModal) authModal.classList.add('active');
+        }
+        return;
+    }
+
+    // 3. Якщо все добре і користувач зайшов — перенаправляємо на сторінку чекауту
+    window.location.href = 'order.html'; 
+};
