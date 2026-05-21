@@ -1,0 +1,12 @@
+{
+  "name": "archipizza-backend",
+  "version": "1.0.0",
+  "description": "Бекенд для Archi-Pizza",
+  "main": "index.js",
+  "scripts": {
+    "start": "json-server --watch data.json --port $PORT"
+  },
+  "dependencies": {
+    "json-server": "^0.17.4"
+  }
+}
