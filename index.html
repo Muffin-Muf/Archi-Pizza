@@ -86,30 +86,28 @@
     <div id="auth-modal" class="modal-overlay">
       <div class="modal-content">
         <button class="close-modal" id="closeAuth">&times;</button>
-        <div class="auth-tabs">
-          <button class="tab-btn active" id="logBtn">Вхід</button>
-          <button class="tab-btn" id="regBtn">Реєстрація</button>
-        </div>
 
-        <!-- Форма входу -->
+        <h2 class="auth-title">Вхід</h2>
+
         <form id="login-form" class="auth-form active">
           <input type="text" id="login-user" placeholder="Логін *" required>
           <input type="password" id="login-pass" placeholder="Пароль *" required>
-          <div id="login-error" class="error-msg"></div> <!-- Повідомлення про невдачу -->
+          <div id="login-error" style="color: red; font-size: 12px; margin-bottom: 10px;"></div>
           <button type="submit" class="auth-submit">Увійти</button>
+
+          <div class="auth-switch">
+            Немає акаунту? <a href="#" id="switchToReg">Створити акаунт</a>
+          </div>
         </form>
 
-        <!-- Форма реєстрації -->
         <form id="register-form" class="auth-form">
           <input type="text" id="reg-login" placeholder="Логін *" required>
-          <input type="password" id="reg-pass" placeholder="Пароль (мін. 6 симв.) *" required>
+          <input type="email" id="reg-email" placeholder="Email *" required>
+          <input type="password" id="reg-pass" placeholder="Пароль *" required>
           <input type="password" id="reg-pass-confirm" placeholder="Повторіть пароль *" required>
-          <div id="reg-errors" class="error-list"></div> <!-- Список конкретних помилок -->
+          <div id="reg-errors" style="color: red; font-size: 12px; margin-bottom: 10px;"></div>
           <button type="submit" class="auth-submit">Створити акаунт</button>
         </form>
-
-        <!-- Повідомлення про успіх (спільне) -->
-        <div id="auth-success" class="success-msg" style="display:none;"></div>
       </div>
     </div>
   </header>
@@ -151,29 +149,6 @@
     </div>
   </section>
 
-  <section class="statistics-section">
-    <div class="container">
-      <h2 class="section-title">Аналітика Archi-Pizza</h2>
-      <div class="stats-container">
-        <div class="chart-controls">
-          <button class="btn-chart active" data-type="pie" onclick="showChart('pie')">Кругова</button>
-          <button class="btn-chart" data-type="bar" onclick="showChart('bar')">Гістограма</button>
-          <button class="btn-chart" data-type="line" onclick="showChart('line')">Графік</button>
-        </div>
-        <canvas id="pizzaChart"></canvas>
-      </div>
-
-
-      <div class="canvas-container">
-        <!-- Контейнер для графіки низького рівня, що оновлює растрове зображення -->
-        <canvas id="pizzaChart" width="400" height="200" role="img" aria-label="Статистика популярності піци"></canvas>
-      </div>
-    </div>
-  </section>
-
-  <!-- Підключення бібліотеки Chart.js (як рекомендовано в матеріалах) -->
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
   <section>
     <div id="cart-overlay" class="cart-overlay" onclick="toggleCart()"></div>
 
@@ -191,7 +166,7 @@
           <span>Разом:</span>
           <span id="cart-total-price">0 грн</span>
         </div>
-        <button class="checkout-btn" onclick="checkout()">Оформити замовлення</button>
+        <button class="checkout-btn" id="orderBtn">Оформити замовлення</button>
       </div>
     </div>
   </section>
@@ -215,11 +190,86 @@
   <button id="scrollToTop"><svg width="800px" height="800px" viewBox="0 0 16 16" fill="none"
       xmlns="http://www.w3.org/2000/svg">
       <path d="M6 8L2 8L2 6L8 5.24536e-07L14 6L14 8L10 8L10 16L6 16L6 8Z" fill="#ffc107" />
-    </svg></button>
+    </svg>
+  </button>
+
+
+  <div id="profile-sidebar" class="sidebar">
+    <div class="sidebar-content">
+      <span id="closeSidebar" class="close-btn">&times;</span>
+      <h2>Мій акаунт</h2>
+      <hr>
+      <div class="user-info">
+        <p><strong>Логін:</strong> <span id="sidebar-login"></span></p>
+        <p><strong>Email:</strong> <span id="sidebar-email"></span></p>
+        <p><strong>Роль:</strong> <span id="sidebar-role"></span></p>
+      </div>
+      <hr>
+      <button id="logoutBtn" class="logout-button">Вийти з акаунту</button>
+    </div>
+  </div>
+
+<footer class="main-footer">
+  <div class="footer-container">
+    
+    <div class="footer-col footer-about">
+      <a href="/" class="footer-logo">
+        <img src="img/ARCHIPIZZA LOGO.png" alt="Archi-Pizza Logo">
+      </a>
+      <h1 class="footer-tagline">Archi-Pizza чекає на тебе!</h1>
+    </div>
+
+    <div class="footer-col footer-links">
+      <h3>Навігація</h3>
+      <ul>
+        <li><a href="menu.html">Меню</a></li>
+        <li><a href="#news">Новини</a></li>
+        <li><a href="#delivery">Доставка і оплата</a></li>
+        <li><a href="#contacts">Контакти</a></li>
+      </ul>
+    </div>
+
+<div class="footer-col footer-contacts-col">
+      <h3>Контакти</h3>
+      <div class="footer-contacts-list">
+        <p class="phone-link"><a href="tel:+380991234567">+38 (099) 123-45-67</a></p>
+        <p class="phone-link"><a href="tel:+380671234567">+38 (067) 123-45-67</a></p>
+        
+        <div class="footer-work-hours">
+          <h3 class="hours-label">Години роботи:</h3>
+          <p class="work-time">Щодня: 10:00 — 21:00</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-col footer-map-block">
+      <h3>Ми на карті</h3>
+      <div class="footer-map-wrapper">
+        <iframe 
+          src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d634.2664855534107!2d30.19973870759607!3d50.51433984349704!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x472b31c0af970a85%3A0xaed3bd998cfcd11a!2sArchi-Pizza!5e0!3m2!1sru!2sus!4v1779367988903!5m2!1sru!2sus" 
+          width="100%" 
+          height="150" 
+          style="border:0;" 
+          allowfullscreen="" 
+          loading="lazy" 
+          referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+      </div>
+      <p class="footer-address">вул.К.Білокур, Ірпінь, Київська область, Украина, 08205</p>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    <p>© 2026 Archi-Pizza. Усі права захищені. Розробка ChNU.</p>
+  </div>
+</footer>
+  
 </body>
 <script src="/js/Header.js"></script>
 <script src="/js/news.js"></script>
 <script src="/js/Carusel.js"></script>
-<script src="/js/menu.js"></script>
+<script src="js/cart.js"></script>
+<script src="js/menu.js"></script>
 
 </html>

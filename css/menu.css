@@ -394,3 +394,106 @@
     font-weight: 600;
     font-size: 15px;
 }
+
+
+
+/* ================= АДАПТОВАНІ СТИЛІ АДМІНІСТРАТОРА (Archi-Pizza) ================= */
+
+/* Картка додавання нового товару повністю під стиль меню */
+.admin-add-card {
+    background-color: var(--archi-bg-card) !important;
+    border: 2px dashed var(--archi-gold) !important; /* Фірмове золото */
+    border-radius: 20px !important; /* Однакове заокруглення з іншими картками */
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    text-align: center;
+    min-height: 350px; 
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+    transition: all 0.3s ease !important;
+}
+
+.admin-add-card:hover {
+    transform: translateY(-8px) !important; /* Таке ж підстрибування, як у звичайної картки */
+    background-color: #fff !important;
+    border-color: var(--archi-navy) !important; /* При наведенні рамка темніє */
+    box-shadow: 0 8px 24px rgba(29, 45, 80, 0.1) !important;
+}
+
+.admin-add-card .add-card-content .add-icon {
+    font-size: 60px;
+    color: var(--archi-gold); /* Фірмове золото */
+    display: block;
+    margin-bottom: 12px;
+    font-weight: 300;
+    transition: color 0.3s ease;
+}
+
+.admin-add-card:hover .add-icon {
+    color: var(--archi-navy); /* Плюс змінює колір при наведенні */
+}
+
+.admin-add-card .add-card-content p {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    color: var(--archi-text-dark); /* Темний текст замість білого */
+    margin: 0;
+    font-size: 1.2rem;
+}
+
+/* Контейнер кнопок дій на картках */
+.admin-actions {
+    display: flex;
+    gap: 10px;
+    padding: 15px 0 0 0;
+    margin-top: 15px;
+    border-top: 1px dashed rgba(0, 0, 0, 0.1); /* Акуратна лінія поділу */
+    background: transparent; /* Прибираємо грубий чорний фон */
+}
+
+.admin-actions button {
+    flex: 1;
+    border: none;
+    padding: 12px 10px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 700;
+    border-radius: 12px; /* Заокруглення під стиль кнопок кошика */
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    transition: all 0.2s ease;
+}
+
+.admin-actions button:active {
+    transform: scale(0.96);
+}
+
+/* Кнопка Редагувати — контурна у глибокому синьому Archi-Navy */
+.btn-edit {
+    background-color: transparent; /* Прозорий фон */
+    color: var(--archi-navy); /* Синій текст */
+    border: 2px solid var(--archi-navy) !important; /* Синій контур */
+}
+
+.btn-edit:hover {
+    background-color: var(--archi-navy); /* При наведенні заливається синім */
+    color: white; /* Текст стає білим */
+    box-shadow: 0 4px 12px rgba(29, 45, 80, 0.2); /* Легка фірмова тінь */
+}
+
+/* Кнопка Видалити — залишається контурною у фірмовому Archi-Red */
+.btn-delete {
+    background-color: transparent;
+    color: var(--archi-red);
+    border: 2px solid var(--archi-red) !important;
+}
+
+.btn-delete:hover {
+    background-color: var(--archi-red);
+    color: white;
+    box-shadow: 0 4px 12px rgba(211, 47, 47, 0.2);
+}

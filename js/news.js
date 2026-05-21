@@ -1,25 +1,44 @@
+const newsList = document.getElementById('newsList');
+const newsDisplay = document.getElementById('newsDisplay');
+const loadMoreBtn = document.getElementById('loadMore');
 
-let newsList = document.getElementById('newsList');
-let newsDisplay = document.getElementById('newsDisplay');
-let loadMoreBtn = document.getElementById('loadMore');
+let allNews = []; 
+let currentPage = 1;
+const newsPerPage = 4; 
 
-let mockNews = [
-    { id: 1, title: "🔥 Гранд-відкриття Archi-Pizza!", time: "18:00", date: "30.04", important: true, text: "Ми офіційно відчинилися! Завітайте на безкоштовну дегустацію нашої фірмової піци на дровах." },
-    { id: 2, title: "🍕 Акція 1+1 до кінця тижня", time: "14:20", date: "30.04", important: true, text: "Замовляйте будь-яку велику піцу та отримуйте другу у подарунок! Акція діє до 4 травня." },
-    { id: 3, title: "🧀 Нова піца 'Архітектор'", time: "12:05", date: "30.04", important: false, text: "Поєднання 5 видів сиру та секретного соусу. Вже доступна для замовлення." },
-    { id: 4, title: "⚡ Швидка доставка за 30 хвилин", time: "10:40", date: "30.04", important: false, text: "Наші кур'єри вже на дорогах. Якщо не встигнемо за 30 хв — піца за наш рахунок!" }
-];
+async function fetchNews(page = 1) {
+    try {
+        const response = await fetch(`http://localhost:3000/news`);
+        
+        if (!response.ok) {
+            throw new Error('Помилка при отриманні новин');
+        }
 
-let olderNews = [
-    { id: 5, title: "🌾 Секрети нашого тіста", time: "17:30", date: "29.04", important: false, text: "Ми використовуємо італійське борошно сорту 00. Тісто ферментується 48 годин." },
-    { id: 6, title: "📸 Конкурс в Instagram", time: "09:15", date: "28.04", important: false, text: "Переможці вже отримали свої сертифікати. Шукайте себе на фото!" }
-];
+        const data = await response.json();
 
-let freshNewsData = null;
+        const totalCount = response.headers.get('X-Total-Count');
 
+        allNews = [...allNews, ...data];
+
+        renderNews(data, page > 1);
+
+        if (loadMoreBtn) {
+            if (allNews.length >= totalCount || data.length < newsPerPage) {
+                loadMoreBtn.style.display = 'none';
+            } else {
+                loadMoreBtn.style.display = 'block';
+            }
+        }
+
+    } catch (error) {
+        console.error("Не вдалося завантажити новини:", error);
+        if (newsList) newsList.innerHTML = '<p style="color: white; padding: 20px;">Не вдалося завантажити стрічку новин.</p>';
+    }
+}
 
 function renderNews(newsArray, append = false) {
     if (!newsList) return;
+    
     let html = newsArray.map(item => `
         <article class="news-item ${item.important ? 'important' : ''}" data-id="${item.id}">
             <div class="meta">${item.time}, ${item.date}</div>
@@ -37,12 +56,9 @@ if (newsList) {
         let card = e.target.closest('.news-item');
         if (!card) return;
 
-        let newsId = parseInt(card.dataset.id);
+        let newsId = card.dataset.id; 
         
-        let allPossibleNews = [...mockNews, ...olderNews];
-        if (freshNewsData) allPossibleNews.push(freshNewsData); 
-
-        let newsData = allPossibleNews.find(n => n.id === newsId);
+        let newsData = allNews.find(n => n.id == newsId);
 
         if (newsData && newsDisplay) {
             newsDisplay.innerHTML = `
@@ -62,82 +78,12 @@ if (newsList) {
     });
 }
 
+
 if (loadMoreBtn) {
     loadMoreBtn.addEventListener('click', () => {
-        renderNews(olderNews, true);
-        loadMoreBtn.style.display = 'none';
+        currentPage++;
+        fetchNews(currentPage);
     });
 }
 
-renderNews(mockNews);
-
-
-
-
-let pizzaData = {
-    labels: ['Маргарита', 'Папероні', '4 Сири', 'Архітектор', 'Веганська'],
-    orders: [150, 220, 180, 95, 60]
-};
-
-let myPizzaChart = null;
-
-function showChart(type) {
-    let ctx = document.getElementById('pizzaChart').getContext('2d');
-    
-    document.querySelectorAll('.btn-chart').forEach(btn => {
-        btn.classList.remove('active');
-        if(btn.dataset.type === type) btn.classList.add('active');
-    });
-
-    if (myPizzaChart) {
-        myPizzaChart.destroy();
-    }
-
-    let archiPalette = [
-        '#e63946', // Червоний
-        '#ffb100', // Жовтий
-        '#1d1d1d', // Темний
-        '#f1faee', // Світлий (для фону)
-        '#457b9d'  // Синій акцент
-    ];
-
-    myPizzaChart = new Chart(ctx, {
-        type: type,
-        data: {
-            labels: pizzaData.labels,
-            datasets: [{
-                label: 'Замовлень',
-                data: pizzaData.orders,
-                backgroundColor: type === 'pie' ? archiPalette : '#ffb100',
-                borderColor: '#1d1d1d',
-                borderWidth: type === 'line' ? 3 : 1,
-                tension: 0.4, 
-                fill: type === 'line' ? 'origin' : false
-            }]
-        },
-        options: {
-            responsive: true,
-            plugins: {
-                legend: {
-                    display: true,
-                    position: 'bottom',
-                    labels: {
-                        font: { size: 14, weight: '600', family: 'sans-serif' },
-                        color: '#1a1a1a'
-                    }
-                }
-            },
-            scales: type !== 'pie' ? {
-                y: {
-                    beginAtZero: true, 
-                    grid: { color: '#f0f0f0' }
-                },
-                x: {
-                    grid: { display: false }
-                }
-            } : {}
-        }
-    });
-}
-
-document.addEventListener('DOMContentLoaded', () => showChart('pie'));
+fetchNews(currentPage);

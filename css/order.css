@@ -1,0 +1,157 @@
+/* Стилізація сторінки оформлення замовлення */
+    .checkout-container {
+        max-width: 800px;
+        margin: 40px auto;
+        padding: 20px;
+        font-family: 'Montserrat', sans-serif;
+    }
+    
+    /* Індикатор кроків */
+    .checkout-steps {
+        display: flex;
+        justify-content: space-around;
+        margin-bottom: 40px;
+        position: relative;
+    }
+    .step-indicator {
+        font-weight: 700;
+        font-size: 1.2rem;
+        color: #ccc;
+        padding-bottom: 10px;
+        border-bottom: 3px solid #ccc;
+        width: 45%;
+        text-align: center;
+        transition: all 0.3s ease;
+    }
+    .step-indicator.active {
+        color: var(--archi-navy, #1D2D50);
+        border-bottom-color: var(--archi-gold, #EBA800);
+    }
+
+    /* Блоки кроків замовлення */
+    .checkout-step-block {
+        display: none; /* За замовчуванням приховані */
+        background: #fff;
+        border-radius: 20px;
+        padding: 30px;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+        border: 1px solid rgba(0,0,0,0.05);
+    }
+    .checkout-step-block.active {
+        display: block; /* Відображаємо тільки активний блок */
+    }
+
+    /* Елементи списку перевірки товарів */
+    .checkout-item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 15px 0;
+        border-bottom: 1px dashed rgba(0,0,0,0.1);
+    }
+    .checkout-item img {
+        width: 70px;
+        height: 70px;
+        object-fit: contain;
+        background: #2D3440;
+        border-radius: 10px;
+        padding: 5px;
+    }
+    .checkout-item-info {
+        flex: 1;
+        padding: 0 20px;
+    }
+    .checkout-item-info h4 {
+        margin: 0 0 5px 0;
+        color: var(--archi-text-dark, #2D3440);
+    }
+
+    /* Кнопки дій */
+    .checkout-actions {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 30px;
+        padding-top: 20px;
+        border-top: 2px solid #f1f1f1;
+    }
+    .total-price-display {
+        font-size: 1.5rem;
+        font-weight: 1000;
+        color: var(--archi-navy, #1D2D50);
+    }
+
+    /* Кнопки стилізовані під Archi-Pizza */
+    .btn-next, .btn-submit {
+        background-color: var(--archi-red, #D32F2F);
+        color: white;
+        border: none;
+        padding: 15px 35px;
+        border-radius: 50px;
+        font-weight: 700;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+    .btn-next:hover, .btn-submit:hover {
+        background-color: #b71c1c;
+        transform: translateY(-2px);
+    }
+    .btn-back {
+        background: transparent;
+        border: 2px solid var(--archi-navy, #1D2D50);
+        color: var(--archi-navy, #1D2D50);
+        padding: 13px 30px;
+        border-radius: 50px;
+        font-weight: 700;
+        cursor: pointer;
+    }
+    .btn-back:hover {
+        background: #f0f4f8;
+    }
+
+    /* Форма доставки */
+    .form-group {
+        margin-bottom: 20px;
+    }
+    .form-group label {
+        display: block;
+        font-weight: 600;
+        margin-bottom: 8px;
+        color: var(--archi-text-dark, #2D3440);
+    }
+    .form-control {
+        width: 100%;
+        padding: 12px 15px;
+        border: 1px solid #ddd;
+        border-radius: 12px;
+        font-family: inherit;
+        font-size: 1rem;
+        box-sizing: border-box;
+    }
+    .form-control:focus {
+        border-color: var(--archi-gold, #EBA800);
+        outline: none;
+    }
+    .form-row {
+        display: flex;
+        gap: 15px;
+    }
+    .form-row .form-group {
+        flex: 1;
+    }
+
+    #address-fields-wrapper {
+    animation: fadeInSlide 0.3s ease-in-out;
+}
+
+@keyframes fadeInSlide {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

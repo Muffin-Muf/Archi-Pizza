@@ -3,40 +3,66 @@ let totalPrice = 0;
 let selectedAdd = [];
 let currentPizza = null;
 
-function initProduct() {
-
+// Завантаження продукту з бекенду (json-server)
+async function initProduct() {
     let urlParams = new URLSearchParams(window.location.search);
-    let pizzaId = parseInt(urlParams.get('id'));
+    // Залишаємо як string, бо в json "id": "1"
+    let pizzaId = urlParams.get('id'); 
 
-    if (typeof products !== 'undefined' && products !== null) {
-        for (let i = 0; i < products.length; i++) {
-            if (products[i].id === pizzaId) {
-                currentPizza = products[i];
-                break;
-            }
-        }
-    } else {
-        setTimeout(initProduct, 100);
+    if (!pizzaId) {
+        console.error("ID продукту не знайдено в URL");
         return;
     }
 
-    if (currentPizza) {
-        document.getElementById('main-pizza-img').src = currentPizza.img;
-        document.getElementById('pizza-name').innerText = currentPizza.name;
-        document.getElementById('pizza-description').innerText = currentPizza.description;
-        document.getElementById('pizza-weight').innerText = currentPizza.weight;
+    try {
+        // Робимо запит до бекенду по конкретному ID продукту
+        const response = await fetch(`http://localhost:3000/products/${pizzaId}`);
         
-        basePrice = currentPizza.price;
-        totalPrice = basePrice;
-        
-        updatePriceDisplay();
-        updateCartCounter();
-        checkCartStatus(); 
+        if (!response.ok) {
+            throw new Error(`Продукт з ID ${pizzaId} не знайдено на сервері`);
+        }
+
+        currentPizza = await response.json();
+
+        // Ініціалізуємо інтерфейс даними з бекенду
+        if (currentPizza) {
+            document.getElementById('main-pizza-img').src = currentPizza.img;
+            document.getElementById('pizza-name').innerText = currentPizza.name;
+            document.getElementById('pizza-description').innerText = currentPizza.description;
+            document.getElementById('pizza-weight').innerText = currentPizza.weight;
+            
+            basePrice = currentPizza.price;
+            totalPrice = basePrice;
+            
+            updatePriceDisplay();
+            updateCartCounter(); 
+            checkCartStatus(); 
+        }
+    } catch (error) {
+        console.error("Помилка при завантаженні продукту з бекенду:", error);
+        document.getElementById('pizza-description').innerText = "Не вдалося завантажити дані про товар.";
     }
 }
 
 document.addEventListener('DOMContentLoaded', initProduct);
 
+// Підрахунок кількості товарів у кошику
+window.updateCartCounter = function() {
+    let cartStr = localStorage.getItem('archi_cart');
+    let cart = cartStr ? JSON.parse(cartStr) : [];
+    let total = 0;
+    for (let i = 0; i < cart.length; i++) {
+        total += cart[i].quantity;
+    }
+    
+    let countElem = document.querySelector('.cart-count');
+    if (countElem) countElem.innerText = total;
+    
+    let countOverlay = document.querySelector('.cart-count-overlay');
+    if (countOverlay) countOverlay.innerText = total;
+};
+
+// Зміна кількості товару
 window.changeProductQty = function(delta) {
     const qtyDisplay = document.getElementById('product-qty-value');
     if (!qtyDisplay) return;
@@ -50,7 +76,8 @@ window.changeProductQty = function(delta) {
     let cartStr = localStorage.getItem('archi_cart');
     if (cartStr && currentPizza) {
         let cart = JSON.parse(cartStr);
-        let itemIndex = cart.findIndex(item => item.originalId === currentPizza.id);
+        // Порівнюємо id як рядки
+        let itemIndex = cart.findIndex(item => String(item.originalId) === String(currentPizza.id));
         
         if (itemIndex !== -1) {
             cart[itemIndex].quantity = newQty;
@@ -61,24 +88,7 @@ window.changeProductQty = function(delta) {
     }
 };
 
-
-function updateCartIcon() {
-    let total = 0;
-    for (let k = 0; k < cart.length; k++) {
-        total += cart[k].quantity;
-    }
-
-    let cartCount1 = document.querySelector('.cart-count');
-    if (cartCount1) {
-        cartCount1.innerText = total;
-    }
-
-    let cartCount2 = document.querySelector('.cart-count-overlay');
-    if (cartCount2) {
-        cartCount2.innerText = total;
-    }
-}
-
+// Перемикач додатків до піци
 window.toggleAddon = function(element, price, name) {
     element.classList.toggle('active');
     
@@ -87,18 +97,12 @@ window.toggleAddon = function(element, price, name) {
         selectedAdd.push(name);
     } else {
         totalPrice = totalPrice - price;
-
-        let newAdd = [];
-        for (let i = 0; i < selectedAdd.length; i++) {
-            if (selectedAdd[i] !== name) {
-                newAdd.push(selectedAdd[i]);
-            }
-        }
-        selectedAdd = newAdd;
+        selectedAdd = selectedAdd.filter(item => item !== name);
     }
     updatePriceDisplay();
 }
 
+// Оновлення відображення ціни
 function updatePriceDisplay() {
     let priceElem = document.getElementById('pizza-price');
     if (priceElem) {
@@ -106,25 +110,22 @@ function updatePriceDisplay() {
     }
 }
 
+// Додавання товару в кошик (зберігається в локальному сховищі)
 window.addProductToCart = function() {
     if (!currentPizza) return;
 
-    // Отримуємо кількість з лічильника
     const qtyDisplay = document.getElementById('product-qty-value');
     let selectedQuantity = qtyDisplay ? parseInt(qtyDisplay.innerText) : 1;
 
-    let finalName = currentPizza.name;
-    if (selectedAdd.length > 0) {
-        finalName += " (" + selectedAdd.join(", ") + ")";
-    }
-
+    // Створюємо чистий об'єкт для кошика
     let cartItem = {
-        id: currentPizza.id + "_" + Date.now(), // Краще використовувати Date.now() замість Random
+        id: currentPizza.id + "_" + Date.now(), 
         originalId: currentPizza.id,
-        name: finalName,
-        price: totalPrice,
+        name: currentPizza.name,          // Назва тепер залишається чистою
+        price: totalPrice,                // Повна ціна (піца + додатки)
         img: currentPizza.img,
-        quantity: selectedQuantity // Використовуємо вибрану кількість
+        quantity: selectedQuantity,
+        addons: [...selectedAdd]          // Зберігаємо масив додатків окремо!
     };
 
     let cartStr = localStorage.getItem('archi_cart');
@@ -139,6 +140,7 @@ window.addProductToCart = function() {
     if (typeof window.renderCart === 'function') window.renderCart(); 
 };
 
+// Перевірка, чи є вже цей товар у кошику
 window.checkCartStatus = function() {
     let btn = document.querySelector('.buy-btn');
     let qtyDisplay = document.getElementById('product-qty-value');
@@ -147,21 +149,21 @@ window.checkCartStatus = function() {
     let cartStr = localStorage.getItem('archi_cart');
     let cart = cartStr ? JSON.parse(cartStr) : [];
     
-    let foundItem = cart.find(item => item.originalId === currentPizza.id);
+    // Перевірка з приведенням до string
+    let foundItem = cart.find(item => String(item.originalId) === String(currentPizza.id));
 
     if (foundItem) {
         btn.innerText = "В кошику";
         btn.classList.add('in-cart');
-        btn.disabled = true;
-        if (qtyDisplay) qtyDisplay.innerText = foundItem.quantity; // Відображаємо кількість із кошика
+        if (qtyDisplay) qtyDisplay.innerText = foundItem.quantity; 
     } else {
         btn.innerText = "Купити піцу";
         btn.classList.remove('in-cart');
         btn.disabled = false;
-        // Якщо товару немає в кошику, можна залишити 1 або те, що вибрав користувач
     }
 };
 
+// Відслідковування змін кошика з інших вкладок
 window.addEventListener('storage', (event) => {
     if (event.key === 'archi_cart') {
         updateCartCounter();
@@ -169,9 +171,9 @@ window.addEventListener('storage', (event) => {
     }
 });
 
+// Плавний скролл до додатків
 function scrollToAddons() {
     const addonsSection = document.querySelector('.addons-section');
-    
     if (addonsSection) {
         addonsSection.scrollIntoView({ 
             behavior: 'smooth', 

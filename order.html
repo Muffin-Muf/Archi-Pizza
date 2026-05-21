@@ -3,11 +3,13 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Archi-Pizza</title>
-    <link rel="stylesheet" href="/css/product.css">
+    <link rel="stylesheet" href="/css/menu.css">
+    <link rel="stylesheet" href="/css/main.css">
     <link rel="stylesheet" href="/css/card.css">
     <link rel="stylesheet" href="/css/header.css">
-    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/order.css">
 </head>
 
 <body>
@@ -31,8 +33,8 @@
 
             <div class="header-tools">
                 <div class="search-wrapper desktop-only" id="searchContainer">
-                    <input type="text" class="search-input" placeholder="Пошук...">
-                    <button class="search-toggle-btn" id="searchButton"><svg width="800px" height="800px"
+                    <input type="text" class="search-input" placeholder="Пошук товару..." id="search-input">
+                    <button class="search-toggle-btn" id="search-button"><svg width="800px" height="800px"
                             viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path
                                 d="M14.9536 14.9458L21 21M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z"
@@ -62,16 +64,6 @@
                     <span class="auth-text desktop-only">Увійти</span>
                     <span class="auth-icon"><svg width="800px" height="800px" viewBox="0 0 24 24" id="Layer_1"
                             data-name="Layer 1" xmlns="http://www.w3.org/2000/svg">
-                            <defs>
-                                <style>
-                                    .cls-1 {
-                                        fill: none;
-                                        stroke: #ffffff;
-                                        stroke-miterlimit: 10;
-                                        stroke-width: 1.91px;
-                                    }
-                                </style>
-                            </defs>
                             <circle class="cls-1" cx="12" cy="7.25" r="5.73" />
                             <path class="cls-1"
                                 d="M1.5,23.48l.37-2.05A10.3,10.3,0,0,1,12,13h0a10.3,10.3,0,0,1,10.13,8.45l.37,2.05" />
@@ -83,8 +75,8 @@
         <div class="mobile-search-bar">
             <div class="search-wrapper">
                 <input type="text" placeholder="Що сьогодні скуштуємо?">
-                <button><svg width="800px" height="800px" viewBox="0 0 24 24" fill="none"
-                        xmlns="http://www.w3.org/2000/svg">
+                <button class="login-btn" onclick="openAuthModal()"><svg width="800px" height="800px"
+                        viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path
                             d="M14.9536 14.9458L21 21M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z"
                             stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
@@ -121,156 +113,90 @@
         </div>
     </header>
 
-    <section>
-        <div class="product-container">
-            <div class="product-main-info">
-                <div class="product-left">
-                    <div class="pizza-frame">
-                        <img src="" id="main-pizza-img" class="main-img" alt="Піца">
-                    </div>
-                </div>
+    <div id="header-placeholder"></div>
 
-                <div class="product-right">
-                    <h1 id="pizza-name">Назва піци</h1>
+    <main class="checkout-container">
 
-                    <h3 class="ingredients-title">Склад:</h3>
-                    <p id="pizza-description" class="product-description">Завантаження складу...</p>
+        <div class="checkout-steps">
+            <div class="step-indicator active" id="ind-step-1">1. Перевірка кошика</div>
+            <div class="step-indicator" id="ind-step-2">2. Дані доставки та оплати</div>
+        </div>
 
-                    <div class="product-meta">
-                        <span id="pizza-price" class="product-price">0 грн</span>
-                        <span class="meta-divider">|</span>
-                        <span id="pizza-weight">0 гр</span>
-                    </div>
+        <div class="checkout-step-block active" id="checkout-block-1">
+            <h2 class="category-group-title"
+                style="border-left: 6px solid var(--archi-gold, #EBA800); padding-left: 15px;">Ваше замовлення</h2>
 
-                    <div class="product-quantity-control">
-                        <button type="button" onclick="changeProductQty(-1)">-</button>
-                        <span id="product-qty-value">1</span>
-                        <button type="button" onclick="changeProductQty(1)">+</button>
-                    </div>
+            <div id="checkout-items-list"></div>
 
-                    <button class="buy-btn" onclick="addProductToCart()">Купити піцу</button>
-
-                    <button class="scroll-to-addons" onclick="scrollToAddons()">
-                        Додати додатки
-                    </button>
-                </div>
-            </div>
-
-    </section>
-
-    <section class="addons-section">
-        <h3>Додати до вашої піци:</h3>
-
-        <!-- КАТЕГОРІЯ: НАЧИНКА -->
-        <div class="category-block">
-            <div class="addons-grid">
-                <!-- Овочі та фрукти -->
-                <div class="addon-card" onclick="toggleAddon(this, 25, 'Гриби')">
-                    <img src="img/mushrooms.png" alt="Гриби">
-                    <p>Гриби</p>
-                    <strong>40г — +25 грн</strong>
-                </div>
-                <div class="addon-card" onclick="toggleAddon(this, 30, 'Оливки')">
-                    <img src="img/olives.png" alt="Оливки">
-                    <p>Оливки</p>
-                    <strong>40г — +30 грн</strong>
-                </div>
-                <div class="addon-card" onclick="toggleAddon(this, 20, 'Томат')">
-                    <img src="img/tomato.png" alt="Томат">
-                    <p>Томат</p>
-                    <strong>40г — +20 грн</strong>
-                </div>
-                <div class="addon-card" onclick="toggleAddon(this, 35, 'Ананаси')">
-                    <img src="img/pineapple.png" alt="Ананаси">
-                    <p>Ананаси</p>
-                    <strong>40г — +35 грн</strong>
-                </div>
-                <div class="addon-card" onclick="toggleAddon(this, 20, 'Кукурудза')">
-                    <img src="img/corn.png" alt="Кукурудза">
-                    <p>Кукурудза</p>
-                    <strong>40г — +20 грн</strong>
-                </div>
-                <div class="addon-card" onclick="toggleAddon(this, 25, 'Перець')">
-                    <img src="img/pepper.png" alt="Перець">
-                    <p>Перець</p>
-                    <strong>40г — +25 грн</strong>
-                </div>
-
-                <!-- М'ясо -->
-                <div class="addon-card" onclick="toggleAddon(this, 45, 'Бекон')">
-                    <img src="img/bacon.png" alt="Бекон">
-                    <p>Бекон</p>
-                    <strong>40г — +45 грн</strong>
-                </div>
-                <div class="addon-card" onclick="toggleAddon(this, 60, 'Папероні')">
-                    <img src="img/pepperoni.png" alt="Папероні">
-                    <p>Папероні</p>
-                    <strong>100г — +60 грн</strong>
-                </div>
-                <div class="addon-card" onclick="toggleAddon(this, 40, 'Шинка')">
-                    <img src="img/ham.png" alt="Шинка">
-                    <p>Шинка</p>
-                    <strong>40г — +40 грн</strong>
-                </div>
-
-                <!-- Сири -->
-                <div class="addon-card" onclick="toggleAddon(this, 45, 'Моцарелла')">
-                    <img src="img/mozzarella.png" alt="Моцарелла">
-                    <p>Моцарелла</p>
-                    <strong>80г — +45 грн</strong>
-                </div>
-                <div class="addon-card" onclick="toggleAddon(this, 50, 'Мааздам')">
-                    <img src="img/maazdam.png" alt="Мааздам">
-                    <p>Мааздам</p>
-                    <strong>80г — +50 грн</strong>
-                </div>
+            <div class="checkout-actions">
+                <div class="total-price-display">Разом: <span id="checkout-total">0 грн</span></div>
+                <button class="btn-next" id="goToStep2">Підтвердити та продовжити →</button>
             </div>
         </div>
 
-    </section>
+        <div class="checkout-step-block" id="checkout-block-2">
+            <h2 class="category-group-title"
+                style="border-left: 6px solid var(--archi-gold, #EBA800); padding-left: 15px;">Куди доставити?</h2>
 
+<form id="final-order-form">
+  
+  <div class="form-group">
+    <label for="order-surname">Прізвище *</label>
+    <input type="text" id="order-surname" class="form-control" placeholder="Введіть прізвище" required>
+  </div>
 
-    <section>
-        <div id="cart-overlay" class="cart-overlay" onclick="toggleCart()"></div>
+  <div class="form-group">
+    <label for="order-name">Ім'я *</label>
+    <input type="text" id="order-name" class="form-control" placeholder="Введіть ім'я" required>
+  </div>
 
-        <div id="cart-drawer" class="cart-drawer">
-            <div class="cart-header">
-                <h2>Ваше замовлення</h2>
-                <button class="close-cart" onclick="toggleCart()">✕</button>
-            </div>
+  <div class="form-group">
+    <label for="order-phone">Номер телефону *</label>
+    <input type="tel" id="order-phone" class="form-control" placeholder="+380" required>
+  </div>
 
-            <div id="cart-items-container" class="cart-items-container">
-            </div>
+  <div class="form-group">
+    <label for="order-delivery-type">Спосіб отримання *</label>
+    <select id="order-delivery-type" class="form-control">
+      <option value="delivery">Кур'єрська доставка</option>
+      <option value="pickup">Самовивіз із піцерії</option>
+    </select>
+  </div>
 
-            <div class="cart-footer">
-                <div class="cart-total">
-                    <span>Разом:</span>
-                    <span id="cart-total-price">0 грн</span>
-                </div>
-                <button class="checkout-btn" onclick="checkout()">Оформити замовлення</button>
-            </div>
-        </div>
-    </section>
-    <button id="scrollToTop"><svg width="800px" height="800px" viewBox="0 0 16 16" fill="none"
-            xmlns="http://www.w3.org/2000/svg">
-            <path d="M6 8L2 8L2 6L8 5.24536e-07L14 6L14 8L10 8L10 16L6 16L6 8Z" fill="#ffc107" />
-        </svg></button>
-
-
-    <div id="profile-sidebar" class="sidebar">
-        <div class="sidebar-content">
-            <span id="closeSidebar" class="close-btn">&times;</span>
-            <h2>Мій акаунт</h2>
-            <hr>
-            <div class="user-info">
-                <p><strong>Логін:</strong> <span id="sidebar-login"></span></p>
-                <p><strong>Email:</strong> <span id="sidebar-email"></span></p>
-                <p><strong>Роль:</strong> <span id="sidebar-role"></span></p>
-            </div>
-            <hr>
-            <button id="logoutBtn" class="logout-button">Вийти з акаунту</button>
-        </div>
+  <div id="address-fields-wrapper">
+    <div class="form-group">
+      <label for="order-address">Адреса доставки (Вулиця та номер будинку) *</label>
+      <input type="text" id="order-address" class="form-control" placeholder="вул. Головна, буд. 12" required>
     </div>
+
+    <div class="form-group">
+      <label for="order-flat">Кв / Офіс / Під'їзд</label>
+      <input type="text" id="order-flat" class="form-control" placeholder="Наприклад: кв. 45, під'їзд 2">
+    </div>
+
+    <div class="form-group">
+      <label for="order-payment">Спосіб оплати *</label>
+      <select id="order-payment" class="form-control">
+        <option value="cash">Готівкою</option>
+        <option value="card">Карткою на сайті</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="order-comment">Коментар до замовлення</label>
+    <textarea id="order-comment" class="form-control" rows="3" placeholder="Додаткові побажання (гостра, без цибулі, номер коду на дверях...)" style="resize: vertical;"></textarea>
+  </div>
+
+  <div class="checkout-actions">
+    <button type="button" class="btn-back" id="backToStep1">← Назад до кошика</button>
+    <button type="submit" class="btn-submit">Надіслати замовлення 🍕</button>
+  </div>
+
+</form>
+        </div>
+
+    </main>
 
 <footer class="main-footer">
   <div class="footer-container">
@@ -329,8 +255,9 @@
 </footer>
 
 </body>
-<script src="/js/menu.js"></script>
 <script src="/js/Header.js"></script>
-<script src="/js/product.js"></script>
+<script src="/js/menu.js"></script>
+<script src="/js/cart.js"></script>
+<script src="/js/order.js"></script>
 
 </html>

@@ -1,0 +1,416 @@
+{
+  "products": [
+    {
+      "name": "Маргарита",
+      "categoria": "pizza",
+      "img": "img/маргарита.jpg",
+      "price": 270,
+      "weight": "700 гр",
+      "description": "Соус Пелаті, моцарелла, томати свіжі",
+      "sizes": [],
+      "id": "1"
+    },
+    {
+      "id": "2",
+      "name": "Папероні",
+      "categoria": "pizza",
+      "type": "paperoni",
+      "price": 290,
+      "weight": "700 гр",
+      "img": "img/паперони(1).jpg",
+      "description": "Соус Пелаті, моцарелла, папероні, соус барбекю"
+    },
+    {
+      "id": "3",
+      "name": "4 сира",
+      "categoria": "pizza",
+      "type": "4cheese",
+      "price": 320,
+      "weight": "700 гр",
+      "img": "img/4сыра.jpg",
+      "description": "Cоус вершковий, моцарелла, сир мааздам, сир твердий, сир Дор Блю"
+    },
+    {
+      "id": "4",
+      "name": "4 м'яса",
+      "categoria": "pizza",
+      "type": "4meat",
+      "price": 320,
+      "weight": "800 гр",
+      "img": "img/4мяса.jpg",
+      "description": "Сосу Пелаті, шинка, салямі, бекон, мисливські ковбаски, печериці, моцарелла, томати свіжі"
+    },
+    {
+      "id": "5",
+      "name": "Сімейна",
+      "categoria": "pizza",
+      "type": "family",
+      "price": 300,
+      "weight": "750 гр",
+      "img": "img/семейная.jpg",
+      "description": "Соус Пелаті, соус частниковий, шинка, курочка копчена, мисливські ковбаски, печериці, моцарелла, кукурудза, томати свіжі"
+    },
+    {
+      "id": "6",
+      "name": "Карбонара",
+      "categoria": "pizza",
+      "type": "carbonara",
+      "price": 290,
+      "weight": "700 гр",
+      "img": "img/карбонара.jpg",
+      "description": "Соус часниковий, шинка, бекон, печериці, моцарелла, томати свіжі"
+    },
+    {
+      "id": "7",
+      "name": "Барбекю",
+      "categoria": "pizza",
+      "type": "bbq",
+      "price": 290,
+      "weight": "700 гр",
+      "img": "img/барбекю.jpg",
+      "description": "Соус барбекю, курочка копчена, мисливські ковбаски, печериці, цибуля синя, моцарелла, томати свіжі"
+    },
+    {
+      "id": "8",
+      "name": "Американо",
+      "categoria": "pizza",
+      "type": "americano",
+      "price": 290,
+      "weight": "700 гр",
+      "img": "img/американо.jpg",
+      "description": "Соус барбекю, салямі, мисливські ковбаски, печериці, цибуля синя, моцарелла, перець болгарський"
+    },
+    {
+      "id": "9",
+      "name": "Гавайська",
+      "categoria": "pizza",
+      "type": "gavai",
+      "price": 290,
+      "weight": "700 гр",
+      "img": "img/гавайская.jpg",
+      "description": "Соус Пелаті, філе куряче, ананаси, моцарелла, кукурудза, томати свіжі, орегано"
+    },
+    {
+      "id": "10",
+      "name": "Українська",
+      "categoria": "pizza",
+      "type": "ukrainian",
+      "price": 290,
+      "weight": "700 гр",
+      "img": "img/украинская.jpg",
+      "description": "Соус Пелаті, ковбаски домашні, бекон, печериці, моцарелла, цибуля синя, огірки мариновані"
+    },
+    {
+      "id": "11",
+      "name": "Італійська",
+      "categoria": "pizza",
+      "type": "italian",
+      "price": 280,
+      "weight": "700 гр",
+      "img": "img/италия.jpg",
+      "description": "Соус Пелаті, салямі, моцарелла, перець болгарський"
+    },
+    {
+      "id": "12",
+      "name": "Цезар",
+      "categoria": "pizza",
+      "type": "cezar",
+      "price": 290,
+      "weight": "700 гр",
+      "img": "img/цезар.png",
+      "description": "Соус часниковий, курочка копчена, бекон, моцарелла, томати, пармезан"
+    },
+    {
+      "id": "13",
+      "name": "Джульєн",
+      "categoria": "pizza",
+      "type": "julien",
+      "price": 290,
+      "weight": "700 гр",
+      "img": "img/джульен.jpg",
+      "description": "Соус вершковий, філе куряче, печериці, моцарелла, пармезан"
+    },
+    {
+      "id": "14",
+      "name": "Пікантна",
+      "categoria": "pizza",
+      "type": "pikantna",
+      "price": 295,
+      "weight": "700 гр",
+      "img": "img/пекантная.jpg",
+      "description": "Соус часниковий, курочка копчена, бекон, моцарелла, сир Дор Блю"
+    },
+    {
+      "id": "15",
+      "name": "Піца з тунцем",
+      "categoria": "pizza",
+      "type": "tunec",
+      "price": 300,
+      "weight": "700 гр",
+      "img": "img/тунец.jpg",
+      "description": "Соус часниковий, тунець консервований, моцарелла, оливки, ананаси"
+    },
+    {
+      "id": "16",
+      "name": "Діабло",
+      "categoria": "pizza",
+      "type": "diablo",
+      "price": 300,
+      "weight": "700 гр",
+      "img": "img/4мяса.jpg",
+      "description": "Соус Пелаті, соус шрірача, соус барбекю, салямі чорізо, салямі, печериці,моцарелла, перець болгарський, перець халапеньо"
+    },
+    {
+      "id": "17",
+      "name": "Coca-Cola",
+      "categoria": "drinks",
+      "type": "cola",
+      "price": 40,
+      "weight": "0.5 л",
+      "img": "img/drinks/cocacola.jpg",
+      "sizes": [
+        {
+          "name": "0.5 л",
+          "price": 40
+        },
+        {
+          "name": "1 л",
+          "price": 60
+        },
+        {
+          "name": "1.5 л",
+          "price": 75
+        },
+        {
+          "name": "2 л",
+          "price": 90
+        }
+      ]
+    },
+    {
+      "id": "18",
+      "name": "Pepsi",
+      "categoria": "drinks",
+      "type": "cola",
+      "price": 40,
+      "weight": "0.5 л",
+      "img": "img/drinks/pepsi.jpg",
+      "sizes": [
+        {
+          "name": "0.5 л",
+          "price": 40
+        },
+        {
+          "name": "1 л",
+          "price": 60
+        },
+        {
+          "name": "1.5 л",
+          "price": 75
+        },
+        {
+          "name": "2 л",
+          "price": 90
+        }
+      ]
+    },
+    {
+      "id": "19",
+      "name": "Fanta",
+      "categoria": "drinks",
+      "type": "cola",
+      "price": 40,
+      "weight": "0.5 л",
+      "img": "img/drinks/fanta.jpg",
+      "sizes": [
+        {
+          "name": "0.5 л",
+          "price": 40
+        },
+        {
+          "name": "1 л",
+          "price": 60
+        },
+        {
+          "name": "1.5 л",
+          "price": 75
+        },
+        {
+          "name": "2 л",
+          "price": 90
+        }
+      ]
+    },
+    {
+      "name": "Sprite",
+      "categoria": "drinks",
+      "img": "img/drinks/sprait.jpg",
+      "price": 40,
+      "weight": "0.5л",
+      "description": "",
+      "sizes": [
+        {
+          "name": "0.5л",
+          "price": 40
+        },
+        {
+          "name": "1л",
+          "price": 60
+        },
+        {
+          "name": "1.5л",
+          "price": 75
+        },
+        {
+          "name": "2л",
+          "price": 90
+        }
+      ],
+      "id": "20"
+    },
+    {
+      "id": "21",
+      "name": "Садочок Яблука-Виноград",
+      "categoria": "drinks",
+      "type": "juice",
+      "price": 40,
+      "weight": "0.5 л",
+      "img": "img/drinks/SadAplGrap.jpg",
+      "sizes": [
+        {
+          "name": "0.2 л",
+          "price": 40
+        },
+        {
+          "name": "0.5 л",
+          "price": 60
+        },
+        {
+          "name": "0.95 л",
+          "price": 75
+        },
+        {
+          "name": "1.93 л",
+          "price": 90
+        }
+      ]
+    },
+    {
+      "id": "22",
+      "name": "Садочок Томатний",
+      "categoria": "drinks",
+      "type": "juice",
+      "price": 40,
+      "weight": "0.5 л",
+      "img": "img/drinks/SadTom.jpg",
+      "sizes": [
+        {
+          "name": "0.2 л",
+          "price": 40
+        },
+        {
+          "name": "0.5 л",
+          "price": 60
+        },
+        {
+          "name": "0.95 л",
+          "price": 75
+        },
+        {
+          "name": "1.93 л",
+          "price": 90
+        }
+      ]
+    }
+  ],
+  "news": [
+    {
+      "id": "1",
+      "title": "🔥 Гранд-відкриття Archi-Pizza!",
+      "time": "18:00",
+      "date": "30.04",
+      "important": true,
+      "text": "Ми офіційно відчинилися! Завітайте на безкоштовну дегустацію нашої фірмової піци на дровах."
+    },
+    {
+      "id": "2",
+      "title": "🍕 Акція 1+1 до кінця тижня",
+      "time": "14:20",
+      "date": "30.04",
+      "important": true,
+      "text": "Замовляйте будь-яку велику піцу та отримуйте другу у подарунок! Акція діє до 4 травня."
+    },
+    {
+      "id": "3",
+      "title": "🧀 Нова піца 'Архітектор'",
+      "time": "12:05",
+      "date": "30.04",
+      "important": false,
+      "text": "Поєднання 5 видів сиру та секретного соусу. Вже доступна для замовлення."
+    },
+    {
+      "id": "4",
+      "title": "⚡ Швидка доставка за 30 хвилин",
+      "time": "10:40",
+      "date": "30.04",
+      "important": false,
+      "text": "Наші кур'єри вже на дорогах. Якщо не встигнемо за 30 хв — піца за наш рахунок!"
+    },
+    {
+      "id": "5",
+      "title": "🌾 Секрети нашого тіста",
+      "time": "17:30",
+      "date": "29.04",
+      "important": false,
+      "text": "Ми використовуємо італійське борошно сорту 00. Тісто ферментується 48 годин."
+    },
+    {
+      "id": "6",
+      "title": "📸 Конкурс в Instagram",
+      "time": "09:15",
+      "date": "28.04",
+      "important": false,
+      "text": "Переможці вже отримали свої сертифікати. Шукайте себе на фото!"
+    }
+  ],
+  "banners": [
+    {
+      "id": "1",
+      "title": "Акція 1+1=3",
+      "description": "Замовляй дві великі піци та отримуй третю у подарунок! Тільки до кінця тижня.",
+      "image": "img/baner.png",
+      "buttonText": "Хочу піцу!"
+    },
+    {
+      "id": "2",
+      "title": "Пекельна гострота",
+      "description": "Спробуй нашу нову піцу 'Діабло' зі знижкою -20%. Наважишся?",
+      "image": "img/baner.png",
+      "buttonText": "Спробувати"
+    },
+    {
+      "id": "3",
+      "title": "Безкоштовна доставка",
+      "description": "При замовленні від 500 грн — доставка по місту безкоштовна за 30 хвилин.",
+      "image": "img/baner.png",
+      "buttonText": "Замовити"
+    }
+  ],
+  "users": [
+    {
+      "login": "admin",
+      "email": "mygolmaria36@chnu.edu.ua",
+      "password": "1234567890",
+      "role": "admin",
+      "id": "1"
+    },
+    {
+      "login": "Muffin",
+      "email": "myhol.mariia@chnu.edu.ua",
+      "password": "12341234",
+      "role": "user",
+      "id": "6gHTr_iwdE4"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}

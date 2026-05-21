@@ -1,91 +1,71 @@
-let products = [
-    { id: 1, name: "Маргарита", categoria: "pizza", type: "margaruta", price: 270, weight: '700 гр', img: "img/маргарита.jpg", description: "Соус Пелаті, моцарелла, томати свіжі" },
-    { id: 2, name: "Папероні", categoria: "pizza", type: "paperoni", price: 290, weight: '700 гр', img: "img/паперони(1).jpg", description: "Соус Пелаті, моцарелла, папероні, соус барбекю" },
-    { id: 3, name: "4 сира", categoria: "pizza", type: "4cheese", price: 320, weight: '700 гр', img: "img/4сыра.jpg", description: "Cоус вершковий, моцарелла, сир мааздам, сир твердий, сир Дор Блю" },
-    { id: 4, name: "4 м'яса", categoria: "pizza", type: "4meat", price: 320, weight: '800 гр', img: "img/4мяса.jpg", description: "Сосу Пелаті, шинка, салямі, бекон, мисливські ковбаски, печериці, моцарелла, томати свіжі" },
-    { id: 5, name: "Сімейна", categoria: "pizza", type: "family", price: 300, weight: '750 гр', img: "img/семейная.jpg", description: "Соус Пелаті, соус частниковий, шинка, курочка копчена, мисливські ковбаски, печериці, моцарелла, кукурудза, томати свіжі" },
-    { id: 6, name: "Карбонара", categoria: "pizza", type: "carbonara", price: 290, weight: '700 гр', img: "img/карбонара.jpg", description: "Соус часниковий, шинка, бекон, печериці, моцарелла, томати свіжі" },
-    { id: 7, name: "Барбекю", categoria: "pizza", type: "bbq", price: 290, weight: '700 гр', img: "img/барбекю.jpg", description: "Соус барбекю, курочка копчена, мисливські ковбаски, печериці, цибуля синя, моцарелла, томати свіжі" },
-    { id: 8, name: "Американо", categoria: "pizza", type: "americano", price: 290, weight: '700 гр', img: "img/американо.jpg", description: "Соус барбекю, салямі, мисливські ковбаски, печериці, цибуля синя, моцарелла, перець болгарський" },
-    { id: 9, name: "Гавайська", categoria: "pizza", type: "gavai", price: 290, weight: '700 гр', img: "img/гавайская.jpg", description: "Соус Пелаті, філе куряче, ананаси, моцарелла, кукурудза, томати свіжі, орегано" },
-    { id: 10, name: "Українська", categoria: "pizza", type: "ukrainian", price: 290, weight: '700 гр', img: "img/украинская.jpg", description: "Соус Пелаті, ковбаски домашні, бекон, печериці, моцарелла, цибуля синя, огірки мариновані" },
-    { id: 11, name: "Італійська", categoria: "pizza", type: "italian", price: 280, weight: '700 гр', img: "img/италия.jpg", description: "Соус Пелаті, салямі, моцарелла, перець болгарський" },
-    { id: 12, name: "Цезар", categoria: "pizza", type: "cezar", price: 290, weight: '700 гр', img: "img/цезар.png", description: "Соус часниковий, курочка копчена, бекон, моцарелла, томати, пармезан" },
-    { id: 13, name: "Джульєн", categoria: "pizza", type: "julien", price: 290, weight: '700 гр', img: "img/джульен.jpg", description: "Соус вершковий, філе куряче, печериці, моцарелла, пармезан" },
-    { id: 14, name: "Пікантна", categoria: "pizza", type: "pikantna", price: 295, weight: '700 гр', img: "img/пекантная.jpg", description: "Соус часниковий, курочка копчена, бекон, моцарелла, сир Дор Блю" },
-    { id: 15, name: "Піца з тунцем", categoria: "pizza", type: "tunec", price: 300, weight: '700 гр', img: "img/тунец.jpg", description: "Соус часниковий, тунець консервований, моцарелла, оливки, ананасиб " },
-    { id: 16, name: "Діабло", categoria: "pizza", type: "diablo", price: 300, weight: '700 гр', img: "img/4мяса.jpg", description: "Соус Пелаті, соус шрірача, соус барбекю, салямі чорізо, салямі, печериці,моцарелла, перець болгарський, перець халапеньо" },
-    { id: 17, name: "Coca-Cola", categoria: "drinks", type: "cola", price: 40, weight: "0.5 л", sizes: [{ name: "0.5 л", price: 40 }, { name: "1 л", price: 60 }, { name: "1.5 л", price: 75 }, { name: "2 л", price: 90 }], img: "img/drinks/cocacola.jpg" },
-    { id: 18, name: "Pepsi", categoria: "drinks", type: "cola", price: 40, weight: "0.5 л", sizes: [{ name: "0.5 л", price: 40 }, { name: "1 л", price: 60 }, { name: "1.5 л", price: 75 }, { name: "2 л", price: 90 }], img: "img/drinks/pepsi.jpg" },
-    { id: 19, name: "Fanta", categoria: "drinks", type: "cola", price: 40, weight: "0.5 л", sizes: [{ name: "0.5 л", price: 40 }, { name: "1 л", price: 60 }, { name: "1.5 л", price: 75 }, { name: "2 л", price: 90 }], img: "img/drinks/fanta.jpg" },
-    { id: 20, name: "Sprite", categoria: "drinks", type: "cola", price: 40, weight: "0.5 л", sizes: [{ name: "0.5 л", price: 40 }, { name: "1 л", price: 60 }, { name: "1.5 л", price: 75 }, { name: "2 л", price: 90 }], img: "img/drinks/sprait.jpg" },
-    { id: 21, name: "Садочок Яблука-Виноград", categoria: "drinks", type: "juice", price: 40, weight: "0.5 л", sizes: [{ name: "0.2 л", price: 40 }, { name: "0.5 л", price: 60 }, { name: "0.95 л", price: 75 }, { name: "1.93 л", price: 90 }], img: "img/drinks/SadAplGrap.jpg" },
-    { id: 22, name: "Садочок Томатний", categoria: "drinks", type: "juice", price: 40, weight: "0.5 л", sizes: [{ name: "0.2 л", price: 40 }, { name: "0.5 л", price: 60 }, { name: "0.95 л", price: 75 }, { name: "1.93 л", price: 90 }], img: "img/drinks/SadTom.jpg" },
-];
-
+// ================= ГЛОБАЛЬНІ ЗМІННІ МЕНЮ =================
+let products = []; 
 let currentCategory = 'all';
 let currentSort = 'default';
 let currentMinPrice = 0;
 let currentMaxPrice = 10000;
-let cart = [];
-
-if (localStorage.getItem('archi_cart')) {
-    cart = JSON.parse(localStorage.getItem('archi_cart'));
-}
 
 let menuGrid = document.getElementById('full-menu-grid');
 let previewContainer = document.getElementById('preview-container');
 
-if (previewContainer) {
-    previewContainer.innerHTML = "";
-    for (let i = 0; i < 3; i++) {
-        if (products[i]) {
-            previewContainer.innerHTML += productCard(products[i]);
-        }
+// ================= ЗАВАНТАЖЕННЯ ДАНИХ З СЕРВЕРА =================
+async function fetchProducts() {
+    try {
+        const response = await fetch('http://localhost:3000/products');
+        if (!response.ok) throw new Error('Помилка завантаження товарів');
+        
+        products = await response.json();
+        initApp();
+    } catch (error) {
+        console.error("Не вдалося завантажити меню:", error);
+        if (menuGrid) menuGrid.innerHTML = '<h2 class="category-group-title">Помилка завантаження меню. Спробуйте пізніше.</h2>';
     }
 }
 
-window.changeCardQty = function(btn, delta) {
-    const card = btn.closest('.pizza-card');
-    const productId = parseInt(card.id.replace('product-', '')); 
-    const display = card.querySelector('.qty-value');
-    
-    let currentQty = parseInt(display.innerText);
-    let newQty = currentQty + delta;
-    
-    if (newQty < 1) newQty = 1;
-    
-    display.innerText = newQty;
+function initApp() {
+    window.updatePreviewProducts();
 
-    let cartItemIndex = -1;
-    for (let i = 0; i < cart.length; i++) {
-        if (cart[i].id === productId) {
-            cartItemIndex = i;
-            break;
+    if (previewContainer) {
+        previewContainer.innerHTML = "";
+        for (let i = 0; i < 3; i++) {
+            if (products[i]) {
+                previewContainer.innerHTML += productCard(products[i]);
+            }
         }
     }
 
-    if (cartItemIndex !== -1) {
-        cart[cartItemIndex].quantity = newQty;
-        
-        saveCart();   
-        updateCartIcon();  
-        if (typeof renderCart === 'function') {
-            renderCart(); 
-        }
-    }
-};
+    let savedQuery = localStorage.getItem('searchQuery');
+    if (savedQuery) {
+        let word = savedQuery.toLowerCase();
+        localStorage.removeItem('searchQuery');
 
+        let found = products.filter(item =>
+            item.name.toLowerCase().includes(word) ||
+            (item.description && item.description.toLowerCase().includes(word))
+        );
+
+        currentCategory = 'all';
+        window.updateMenu(found);
+
+        let menuSearchInput = document.getElementById("search-input");
+        if (menuSearchInput) menuSearchInput.value = savedQuery;
+    } else {
+        if (menuGrid) window.updateMenu();
+    }
+}
+
+// ================= ГЕНЕРАЦІЯ ШАБЛОНУ КАРТКИ =================
 function productCard(item) {
     let details = '';
     let sizeSelector = '';
     let isInCart = false;
     let currentQuantity = 1;
 
-    for (let i = 0; i < cart.length; i++) {
-        if (cart[i].id === item.id) {
+    const currentCart = window.cart || [];
+    for (let i = 0; i < currentCart.length; i++) {
+        if (currentCart[i].id == item.id) {
             isInCart = true;
-            currentQuantity = cart[i].quantity; // Беремо кількість із кошика
+            currentQuantity = currentCart[i].quantity;
             break;
         }
     }
@@ -93,15 +73,15 @@ function productCard(item) {
     let buttonHTML = '';
     let quantityHTML = `
         <div class="card-qty-picker">
-            <button onclick="changeCardQty(this, -1)">-</button>
+            <button onclick="window.changeCardQty(this, -1)">-</button>
             <span class="qty-value">${currentQuantity}</span>
-            <button onclick="changeCardQty(this, 1)">+</button>
+            <button onclick="window.changeCardQty(this, 1)">+</button>
         </div>`;
 
     if (isInCart) {
         buttonHTML = '<button class="add-to-cart in-cart" disabled>В кошику</button>';
     } else {
-        buttonHTML = '<button class="add-to-cart" onclick="addToCart(event, ' + item.id + ')">Купити</button>';
+        buttonHTML = `<button class="add-to-cart" onclick="window.addToCart(event, '${item.id}')">Купити</button>`;
     }
 
     if (item.categoria === "pizza") {
@@ -113,14 +93,26 @@ function productCard(item) {
             '</div>';
     }
 
-    if (item.sizes && item.sizes.length > 0) {
+    // Кнопки вибору об'єму виводяться суворо тільки для категорії drinks
+    if (item.categoria === "drinks" && item.sizes && item.sizes.length > 0) {
         sizeSelector = '<div class="size-selector">';
         for (let j = 0; j < item.sizes.length; j++) {
             let s = item.sizes[j];
             let activeClass = (j === 0) ? 'active' : '';
-            sizeSelector += '<button class="size-btn ' + activeClass + '" onclick="changeSize(event, this, ' + s.price + ', \'' + s.name + '\')">' + s.name + '</button>';
+            sizeSelector += '<button class="size-btn ' + activeClass + '" onclick="window.changeSize(event, this, ' + s.price + ', \'' + s.name + '\')">' + s.name + '</button>';
         }
         sizeSelector += '</div>';
+    }
+
+    let adminButtonsHTML = '';
+    const user = JSON.parse(sessionStorage.getItem('current_user'));
+    if (user && user.role === 'admin') {
+        adminButtonsHTML = `
+            <div class="admin-actions">
+                <button class="btn-edit" onclick="window.editProduct('${item.id}', event)">✏️ Редагувати</button>
+                <button class="btn-delete" onclick="window.deleteProduct('${item.id}', event)">🗑️ Видалити</button>
+            </div>
+        `;
     }
 
     return '<div class="pizza-card animate-fade" id="product-' + item.id + '">' +
@@ -133,10 +125,12 @@ function productCard(item) {
         '<span class="weight">' + item.weight + '</span>' +
         '</div>' +
         '<div class="card-buttons">' + buttonHTML + quantityHTML + '</div>' +
+        adminButtonsHTML +
         '</div>';
 }
 
-function changeSize(event, btn, newPrice, newWeight) {
+// ================= ФУНКЦІЇ КАРТКИ ТА ФІЛЬТРІВ =================
+window.changeSize = function(event, btn, newPrice, newWeight) {
     event.stopPropagation();
     let card = btn.closest('.pizza-card');
     card.querySelector('.price').innerText = newPrice + " грн";
@@ -146,22 +140,22 @@ function changeSize(event, btn, newPrice, newWeight) {
         buttons[i].classList.remove('active');
     }
     btn.classList.add('active');
-}
+};
 
-function addToCart(event, productId) {
+window.addToCart = function(event, productId) {
     event.stopPropagation();
     let product = null;
     for (let i = 0; i < products.length; i++) {
-        if (products[i].id === productId) {
+        if (products[i].id == productId) {
             product = products[i];
             break;
         }
     }
 
+    if (!product) return;
+
     let card = document.getElementById('product-' + productId);
     let currentPrice = parseInt(card.querySelector('.price').innerText);
-
-
     let qtyElement = card.querySelector('.qty-value');
     let selectedQuantity = qtyElement ? parseInt(qtyElement.innerText) : 1;
 
@@ -174,17 +168,19 @@ function addToCart(event, productId) {
         quantity: selectedQuantity
     };
 
-    cart.push(cartItem);
+    if (!window.cart) window.cart = [];
+    window.cart.push(cartItem);
+    
     let btn = event.target;
     btn.innerText = "В кошику";
     btn.classList.add("in-cart");
     btn.disabled = true;
 
-    saveCart();
-    updateCartIcon();
-}
+    if (typeof window.saveCart === 'function') window.saveCart();
+    if (typeof window.updateCartIcon === 'function') window.updateCartIcon();
+};
 
-function updateMenu(searchResult = null) {
+window.updateMenu = function(searchResult = null) {
     if (menuGrid == null) return;
     menuGrid.innerHTML = "";
 
@@ -226,6 +222,9 @@ function updateMenu(searchResult = null) {
         }
     }
 
+    const user = JSON.parse(sessionStorage.getItem('current_user'));
+    const isAdmin = user && user.role === 'admin';
+
     for (let i = 0; i < cats.length; i++) {
         let currentCatg = cats[i];
         let title = categoryNames[currentCatg] || currentCatg;
@@ -233,6 +232,18 @@ function updateMenu(searchResult = null) {
 
         let groupGrid = document.createElement('div');
         groupGrid.className = 'pizza-grid';
+
+        if (isAdmin && i === 0) {
+            groupGrid.innerHTML += `
+                <div class="pizza-card admin-add-card" onclick="window.createNewProduct()">
+                    <div class="add-card-content">
+                        <span class="add-icon">+</span>
+                        <p>Додати новий товар</p>
+                    </div>
+                </div>
+            `;
+        }
+
         for (let j = 0; j < itemsToDisplay.length; j++) {
             if (itemsToDisplay[j].categoria == currentCatg) {
                 groupGrid.innerHTML += productCard(itemsToDisplay[j]);
@@ -240,73 +251,68 @@ function updateMenu(searchResult = null) {
         }
         menuGrid.appendChild(groupGrid);
     }
-}
+};
 
+window.updatePreviewProducts = function() {
+    if (!previewContainer) return; 
+    
+    previewContainer.innerHTML = "";
+    for (let i = 0; i < 3; i++) {
+        if (products[i]) {
+            previewContainer.innerHTML += productCard(products[i]);
+        }
+    }
+};
+
+window.handleSort = function() {
+    currentSort = document.getElementById('sort-select').value;
+    window.updateMenu();
+};
+
+// ================= ПОШУК ТА ПАНЕЛЬ ЦІН =================
 let minPriceInput = document.getElementById("min-price");
 let maxPriceInput = document.getElementById("max-price");
 let priceFilterBtn = document.getElementById("sort-by-price");
 
 if (priceFilterBtn) {
     priceFilterBtn.addEventListener("click", function () {
-        if (minPriceInput.value !== "") {
-            currentMinPrice = parseInt(minPriceInput.value);
-        } else {
-            currentMinPrice = 0;
-        }
-
-        if (maxPriceInput.value !== "") {
-            currentMaxPrice = parseInt(maxPriceInput.value);
-        } else {
-            currentMaxPrice = 10000;
-        }
+        currentMinPrice = minPriceInput.value !== "" ? parseInt(minPriceInput.value) : 0;
+        currentMaxPrice = maxPriceInput.value !== "" ? parseInt(maxPriceInput.value) : 10000;
 
         if (currentMinPrice > currentMaxPrice) {
-            let qwerty = currentMinPrice;
+            let temp = currentMinPrice;
             currentMinPrice = currentMaxPrice;
-            currentMaxPrice = qwerty;
-
+            currentMaxPrice = temp;
             minPriceInput.value = currentMinPrice;
             maxPriceInput.value = currentMaxPrice;
         }
-
-        updateMenu();
+        window.updateMenu();
     });
 }
 
-function saveCart() {
-    localStorage.setItem('archi_cart', JSON.stringify(cart));
-}
+let searchInput = document.getElementById("search-input");
+let searchBtn = document.getElementById("search-button");
 
-function updateCartIcon() {
-    let total = 0;
-    for (let k = 0; k < cart.length; k++) {
-        total += cart[k].quantity;
-    }
-
-    let cartCount1 = document.querySelector('.cart-count');
-    if (cartCount1) {
-        cartCount1.innerText = total;
-    }
-
-    let cartCount2 = document.querySelector('.cart-count-overlay');
-    if (cartCount2) {
-        cartCount2.innerText = total;
+function searchProducts(event) {
+    if (event) event.preventDefault();
+    let word = searchInput.value.trim();
+    if (word.length > 0) {
+        localStorage.setItem('searchQuery', word);
+        window.location.href = 'menu.html';
     }
 }
 
-function handleSort() {
-    currentSort = document.getElementById('sort-select').value;
-    updateMenu();
+if (searchBtn) searchBtn.addEventListener("click", searchProducts);
+if (searchInput) {
+    searchInput.addEventListener("keydown", function (event) {
+        if (event.key === "Enter") searchProducts(event);
+    });
 }
 
-window.addToCart = addToCart;
-window.changeSize = changeSize;
-window.handleSort = handleSort;
-window.updateMenu = updateMenu;
-
+// СЛУХАЧ ДЛЯ ІНІЦІАЛІЗАЦІЇ МЕНЮ
 document.addEventListener('DOMContentLoaded', function () {
-    updateCartIcon();
-    if (menuGrid) updateMenu();
+    fetchProducts();
+
     let filters = document.querySelectorAll('.filter-btn');
     for (let i = 0; i < filters.length; i++) {
         filters[i].addEventListener('click', function () {
@@ -315,174 +321,307 @@ document.addEventListener('DOMContentLoaded', function () {
                 filters[j].classList.remove('active');
             }
             this.classList.add('active');
-            updateMenu();
+            window.updateMenu();
         });
     }
 });
 
-function toggleCart() {
-    document.getElementById('cart-drawer').classList.toggle('open');
-    document.getElementById('cart-overlay').classList.toggle('open');
-    renderCart();
+
+// ================= ДИНАМІЧНЕ СТВОРЕННЯ МОДАЛКИ АДМІНА (ПРОКАЧАНЕ) =================
+function injectAdminModal() {
+    if (document.getElementById('admin-product-modal')) return;
+
+    const modalHTML = `
+    <div id="admin-product-modal" class="modal-overlay" style="display: none;">
+      <div class="modal-content" style="max-width: 500px; max-height: 90vh; overflow-y: auto;">
+        <button class="close-modal" id="closeAdminModal">&times;</button>
+
+        <h2 id="admin-modal-title">Додати новий товар</h2>
+
+        <form id="admin-product-form">
+          <input type="hidden" id="admin-prod-id">
+
+          <div class="form-group">
+            <label for="admin-prod-name">Назва товару *</label>
+            <input type="text" id="admin-prod-name" class="form-control" placeholder="Наприклад: Маргарита" required>
+          </div>
+
+          <div class="form-group">
+            <label for="admin-prod-category">Категорія *</label>
+            <select id="admin-prod-category" class="form-control">
+              <option value="pizza">Піца</option>
+              <option value="drinks">Напої</option>
+              <option value="deserts">Десерти</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="admin-prod-img">Посилання на зображення *</label>
+            <input type="text" id="admin-prod-img" class="form-control" placeholder="img/pizza/margarita.png" required>
+          </div>
+
+          <div id="admin-standard-price-block">
+              <div class="form-group">
+                <label for="admin-prod-price">Ціна (грн) *</label>
+                <input type="number" id="admin-prod-price" class="form-control" min="0" placeholder="250">
+              </div>
+
+              <div class="form-group">
+                <label for="admin-prod-weight">Вага/Об'єм *</label>
+                <input type="text" id="admin-prod-weight" class="form-control" placeholder="450г">
+              </div>
+          </div>
+
+          <div id="admin-drinks-sizes-block" style="display: none; border: 1px dashed var(--archi-gold); padding: 15px; border-radius: 12px; margin-bottom: 20px;">
+              <h4 style="margin: 0 0 10px 0; color: var(--archi-navy);">Варіанти об'ємів та цін</h4>
+              <div id="sizes-inputs-container">
+                  </div>
+              <button type="button" id="add-size-row-btn" style="background:#f0f4f8; border:1px solid #ccc; padding: 6px 12px; border-radius: 8px; cursor:pointer; font-weight:600; font-size:12px; margin-top:5px;">+ Додати варіант об'єму</button>
+          </div>
+
+          <div class="form-group">
+            <label for="admin-prod-description">Склад / Опис</label>
+            <textarea id="admin-prod-description" class="form-control" rows="3" placeholder="Моцарела, томати..."></textarea>
+          </div>
+
+          <button type="submit" class="auth-submit" id="admin-submit-btn">Зберегти товар</button>
+        </form>
+      </div>
+    </div>
+    `;
+
+    document.body.insertAdjacentHTML('beforeend', modalHTML);
+    setupAdminFormListeners();
 }
 
-window.renderCart = function () {
-    let container = document.getElementById('cart-items-container');
-    let totalDisplay = document.getElementById('cart-total-price');
+// ================= НАВІШУВАННЯ ПОДІЙ ДЛЯ ФОРМИ =================
+function setupAdminFormListeners() {
+    const adminForm = document.getElementById('admin-product-form');
+    const adminModal = document.getElementById('admin-product-modal');
+    const closeAdminModalBtn = document.getElementById('closeAdminModal');
+    const categorySelect = document.getElementById('admin-prod-category');
+    
+    const standardBlock = document.getElementById('admin-standard-price-block');
+    const drinksBlock = document.getElementById('admin-drinks-sizes-block');
+    const addSizeBtn = document.getElementById('add-size-row-btn');
+
+    // Перемикання відображення блоків ціни в залежності від обраної категорії
+    if (categorySelect) {
+        categorySelect.addEventListener('change', function() {
+            toggleAdminPriceFields(this.value);
+        });
+    }
+
+    // Додавання нового порожнього рядка для об'єму напою
+    if (addSizeBtn) {
+        addSizeBtn.addEventListener('click', () => {
+            addSizeRow("", "");
+        });
+    }
+
+    if (adminForm) {
+        adminForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            const id = document.getElementById('admin-prod-id').value;
+            const category = categorySelect.value;
+            
+            let finalPrice = 0;
+            let finalWeight = "";
+            let finalSizes = [];
+
+            if (category === 'drinks') {
+                // Збираємо дані з усіх створених рядків об'ємів
+                const rows = document.querySelectorAll('.size-input-row');
+                rows.forEach(row => {
+                    const name = row.querySelector('.size-name-input').value.trim();
+                    const price = parseInt(row.querySelector('.size-price-input').value);
+                    if (name && price) {
+                        finalSizes.push({ name: name, price: price });
+                    }
+                });
+
+                // Якщо адмін додав хоча б один об'єм, виставляємо його як базовий
+                if (finalSizes.length > 0) {
+                    finalPrice = finalSizes[0].price;
+                    finalWeight = finalSizes[0].name;
+                }
+            } else {
+                // Для піци та десертів беремо звичайні поодинокі поля
+                finalPrice = parseInt(document.getElementById('admin-prod-price').value) || 0;
+                finalWeight = document.getElementById('admin-prod-weight').value.trim();
+            }
+            
+            const productData = {
+                name: document.getElementById('admin-prod-name').value.trim(),
+                categoria: category,
+                img: document.getElementById('admin-prod-img').value.trim(),
+                price: finalPrice,
+                weight: finalWeight,
+                description: document.getElementById('admin-prod-description').value.trim(),
+                sizes: finalSizes
+            };
+
+            let url = 'http://localhost:3000/products';
+            let method = 'POST';
+
+            if (id) {
+                url = `http://localhost:3000/products/${id}`;
+                method = 'PUT';
+            }
+
+            try {
+                const response = await fetch(url, {
+                    method: method,
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(productData)
+                });
+
+                if (response.ok) {
+                    alert(id ? "Товар успішно оновлено!" : "Товар успішно додано!");
+                    if (adminModal) adminModal.style.display = 'none';
+                    window.location.reload();
+                } else {
+                    alert("Помилка сервера при збереженні товару.");
+                }
+            } catch (error) {
+                console.error("Помилка відправки даних:", error);
+            }
+        });
+    }
+
+    if (closeAdminModalBtn) {
+        closeAdminModalBtn.addEventListener('click', () => {
+            if (adminModal) adminModal.style.display = 'none';
+        });
+    }
+}
+
+// Допоміжна функція керування полями форми
+function toggleAdminPriceFields(category) {
+    const standardBlock = document.getElementById('admin-standard-price-block');
+    const drinksBlock = document.getElementById('admin-drinks-sizes-block');
+    const container = document.getElementById('sizes-inputs-container');
+
+    if (category === 'drinks') {
+        standardBlock.style.display = 'none';
+        drinksBlock.style.display = 'block';
+        
+        // Робимо обов'язковими стандартні інпути неактивними
+        document.getElementById('admin-prod-price').removeAttribute('required');
+        document.getElementById('admin-prod-weight').removeAttribute('required');
+
+        // Якщо жодного варіанту ще немає, додаємо один дефолтний рядок
+        if (container && container.children.length === 0) {
+            addSizeRow("0.5л", "");
+        }
+    } else {
+        standardBlock.style.display = 'block';
+        drinksBlock.style.display = 'none';
+        
+        document.getElementById('admin-prod-price').setAttribute('required', '');
+        document.getElementById('admin-prod-weight').setAttribute('required', '');
+    }
+}
+
+// Допоміжна функція генерації рядка варіантів (Об'єм + Ціна)
+function addSizeRow(nameValue = "", priceValue = "") {
+    const container = document.getElementById('sizes-inputs-container');
     if (!container) return;
 
-    let savedCart = localStorage.getItem('archi_cart');
-    if (savedCart) {
-        cart = JSON.parse(savedCart);
-    } else {
-        cart = [];
-    }
-
-    container.innerHTML = "";
-    let totalSum = 0;
-
-    if (cart.length === 0) {
-        container.innerHTML = "<p style='text-align:center; padding: 50px 0; color:#999;'>Кошик порожній</p>";
-        if (totalDisplay) totalDisplay.innerText = "0 грн";
-        return;
-    }
-
-    for (let i = 0; i < cart.length; i++) {
-        let item = cart[i];
-        let itemSum = item.price * item.quantity;
-        totalSum = totalSum + itemSum;
-
-        container.innerHTML += '<div class="cart-item-sidebar">' +
-            '<img src="' + item.img + '" class="cart-img">' +
-            '<div class="cart-info">' +
-            '<h4>' + item.name + '</h4>' +
-            '<div class="cart-controls">' +
-            '<div class="qty-picker">' +
-            '<button onclick="changeCartQty(' + i + ', -1)">-</button>' +
-            '<span>' + item.quantity + '</span>' +
-            '<button onclick="changeCartQty(' + i + ', 1)">+</button>' +
-            '</div>' +
-            '<span class="item-price-total">' + itemSum + ' грн</span>' +
-            '</div></div>' +
-            '<button class="remove-item" onclick="removeFromCart(' + i + ')">✕</button>' +
-            '</div>';
-    }
-
-    if (typeof window.checkCartStatus === 'function') {
-        window.checkCartStatus();
-    }
-
-    if (totalDisplay) totalDisplay.innerText = totalSum + " грн";
-
-    let buyBtn = document.querySelector('.buy-btn');
-    if (buyBtn && typeof currentPizza !== 'undefined' && currentPizza !== null) {
-        let isInCart = false;
-        for (let i = 0; i < cart.length; i++) {
-            if (cart[i].originalId === currentPizza.id) {
-                isInCart = true;
-                break;
-            }
-        }
-        if (!isInCart) {
-            buyBtn.innerText = "Купити піцу";
-            buyBtn.classList.remove('in-cart');
-            buyBtn.disabled = false;
-        } else {
-            buyBtn.innerText = "В кошику";
-            buyBtn.classList.add('in-cart');
-            buyBtn.disabled = true;
-        }
-    }
+    const row = document.createElement('div');
+    row.className = 'size-input-row';
+    row.style = 'display: flex; gap: 10px; margin-bottom: 8px; align-items: center;';
+    
+    row.innerHTML = `
+        <input type="text" class="form-control size-name-input" placeholder="0.5л" value="${nameValue}" style="flex:1; padding: 8px;" required>
+        <input type="number" class="form-control size-price-input" placeholder="Ціна" value="${priceValue}" style="width: 100px; padding: 8px;" required>
+        <button type="button" onclick="this.parentElement.remove()" style="background: none; border: none; color: red; font-size: 1.2rem; cursor: pointer; padding: 0 5px;">✕</button>
+    `;
+    container.appendChild(row);
 }
 
-window.changeCartQty = function (index, delta) {
-    cart[index].quantity = cart[index].quantity + delta;
-    if (cart[index].quantity <= 0) {
-        let newCart = [];
-        for (let i = 0; i < cart.length; i++) {
-            if (i !== index) newCart.push(cart[i]);
+// ================= ГЛОБАЛЬНІ ФУНКЦІЇ ДЛЯ КНОПОК КАРТКИ =================
+
+window.createNewProduct = function() {
+    injectAdminModal();
+
+    const adminModal = document.getElementById('admin-product-modal');
+    const adminForm = document.getElementById('admin-product-form');
+    const container = document.getElementById('sizes-inputs-container');
+
+    if (adminForm && adminModal) {
+        adminForm.reset();
+        if (container) container.innerHTML = ""; 
+        document.getElementById('admin-prod-id').value = "";
+        document.getElementById('admin-modal-title').textContent = "Додати новий товар";
+        
+        document.getElementById('admin-prod-category').value = "pizza";
+        
+        // Викликаємо через перевірку, щоб не було помилки undefined
+        if (typeof toggleAdminPriceFields === 'function') {
+            toggleAdminPriceFields("pizza");
         }
-        cart = newCart;
+        
+        adminModal.style.display = 'flex';
     }
-    saveCart();
-    updateCartIcon();
-    renderCart();
-    if (typeof window.checkCartStatus === 'function') {
-        window.checkCartStatus();
-    }
-    if (typeof updateMenu === 'function') updateMenu();
 };
 
-window.removeFromCart = function (index) {
-    let newCart = [];
-    for (let i = 0; i < cart.length; i++) {
-        if (i !== index) newCart.push(cart[i]);
+window.editProduct = async function(id, event) {
+    if (event) event.stopPropagation();
+    
+    injectAdminModal();
+
+    const adminModal = document.getElementById('admin-product-modal');
+    const container = document.getElementById('sizes-inputs-container');
+    if (container) container.innerHTML = ""; // очищаємо
+
+    try {
+        const response = await fetch(`http://localhost:3000/products/${id}`);
+        if (!response.ok) throw new Error("Не вдалося завантажити дані товару");
+        const product = await response.json();
+
+        document.getElementById('admin-prod-id').value = product.id;
+        document.getElementById('admin-prod-name').value = product.name;
+        document.getElementById('admin-prod-category').value = product.categoria;
+        document.getElementById('admin-prod-img').value = product.img;
+        document.getElementById('admin-prod-description').value = product.description || "";
+
+        // Викликаємо перемикання полів під завантажену категорію
+        toggleAdminPriceFields(product.categoria);
+
+        if (product.categoria === 'drinks' && product.sizes && product.sizes.length > 0) {
+            // Якщо це напій з розмірами — заповнюємо динамічні рядки
+            product.sizes.forEach(s => {
+                addSizeRow(s.name, s.price);
+            });
+        } else {
+            // Інакше — заповнюємо стандартні поодинокі поля
+            document.getElementById('admin-prod-price').value = product.price;
+            document.getElementById('admin-prod-weight').value = product.weight;
+        }
+
+        document.getElementById('admin-modal-title').textContent = "Редагувати товар";
+        if (adminModal) adminModal.style.display = 'flex';
+    } catch (error) {
+        console.error("Помилка:", error);
+        alert("Помилка завантаження даних товару.");
     }
-    cart = newCart;
-    saveCart();
-    updateCartIcon();
-    renderCart();
+};
 
-    if (typeof window.checkCartStatus === 'function') {
-        window.checkCartStatus();
-    }
-    if (typeof updateMenu === 'function') updateMenu();
-}
-
-
-
-// Функція пошуку
-
-let searchInput = document.getElementById("search-input");
-let searchBtn = document.getElementById("search-button");
-
-
-function searchProducts(event) {
-    if (event) event.preventDefault();
-
-    let word = searchInput.value.trim();
-
-    if (word.length > 0) {
-        localStorage.setItem('searchQuery', word);
-        window.location.href = 'menu.html';
-    }
-}
-
-document.addEventListener('DOMContentLoaded', function () {
-    let savedQuery = localStorage.getItem('searchQuery');
-
-    if (savedQuery) {
-        let word = savedQuery.toLowerCase();
-
-        localStorage.removeItem('searchQuery');
-
-        if (typeof products !== 'undefined') {
-            let found = products.filter(item =>
-                item.name.toLowerCase().includes(word) ||
-                (item.description && item.description.toLowerCase().includes(word))
-            );
-
-            if (typeof updateMenu === 'function') {
-                currentCategory = 'all';
-                updateMenu(found);
-
-                let menuSearchInput = document.getElementById("search-input");
-                if (menuSearchInput) menuSearchInput.value = savedQuery;
+window.deleteProduct = async function(id, event) {
+    if (event) event.stopPropagation();
+    if (confirm(`Ви впевнені, що хочете видалити товар з ID: ${id}?`)) {
+        try {
+            const response = await fetch(`http://localhost:3000/products/${id}`, { method: 'DELETE' });
+            if (response.ok) {
+                alert("Товар успішно видалено!");
+                window.location.reload();
+            } else {
+                alert("Не вдалося видалити товар.");
             }
+        } catch (error) {
+            console.error("Помилка:", error);
         }
-    } else {
-        if (typeof updateMenu === 'function') updateMenu();
     }
-});
-
-if (searchBtn) {
-    searchBtn.addEventListener("click", searchProducts);
-}
-
-if (searchInput) {
-    searchInput.addEventListener("keydown", function (event) {
-        if (event.key === "Enter") {
-            searchProducts(event);
-        }
-    });
-}
+};

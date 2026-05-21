@@ -211,8 +211,6 @@ header svg {
 
 
 /* МОДАЛЬНЕ ВІКНО РЕЄСТРАЦІЇ */
-
-
 .modal-overlay {
     position: fixed;
     top: 0;
@@ -220,43 +218,41 @@ header svg {
     width: 100%;
     height: 100%;
     background: rgba(0, 0, 0, 0.7);
-    display: none;
+    backdrop-filter: blur(5px);
+    display: none; 
     justify-content: center;
     align-items: center;
     z-index: 9999;
-    backdrop-filter: blur(4px);
 }
 
 .modal-content {
     background: white;
-    padding: 30px;
-    margin: auto;
-    border-radius: 12px;
+    padding: 40px;
+    border-radius: 20px;
     width: 90%;
     max-width: 400px;
     position: relative;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+    animation: fadeIn 0.3s ease;
 }
 
-.auth-tabs {
-    display: flex;
-    margin-bottom: 20px;
-    border-bottom: 2px solid #eee;
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
 }
 
-.tab-btn {
-    flex: 1;
-    padding: 10px;
-    border: none;
-    background: none;
-    cursor: pointer;
+/* Новий стиль для простого заголовка зверху */
+.auth-title {
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 25px;
+    font-size: 24px;
+    color: #333;
     font-weight: bold;
-    color: #999;
 }
 
-.tab-btn.active {
-    color: #ffc107; 
-    border-bottom: 2px solid #ffc107;
+.auth-text{
+   color: #333;
 }
 
 .auth-form {
@@ -286,47 +282,6 @@ header svg {
 
 .close-modal {
     position: absolute;
-    top: 10px;
-    right: 15px;
-    background: none;
-    border: none;
-    font-size: 24px;
-    cursor: pointer;
-}
-.modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.7); /* Напівпрозорий чорний */
-    backdrop-filter: blur(5px); /* Розмиття заднього фону */
-    
-    display: none; 
-    justify-content: center;
-    align-items: center;
-    
-    z-index: 9999;
-}
-
-.modal-content {
-    background: white;
-    padding: 40px;
-    border-radius: 20px;
-    width: 90%;
-    max-width: 400px;
-    position: relative;
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
-    animation: fadeIn 0.3s ease;
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; transform: scale(0.9); }
-    to { opacity: 1; transform: scale(1); }
-}
-
-.close-modal {
-    position: absolute;
     top: 15px;
     right: 20px;
     font-size: 28px;
@@ -336,11 +291,8 @@ header svg {
     color: #333;
     line-height: 1;
 }
-
-/* КНОПКА ДЛЯ ПРОКРУТКИ СТОРІНКИ ВГОРУ*/
-
+/* КНОПКА ДЛЯ ПРОКРУТКИ СТОРІНКИ ВГОРУ */
 #scrollToTop {
-    display: none;
     position: fixed;
     bottom: 20px;
     right: 20px;
@@ -354,12 +306,18 @@ header svg {
     height: 50px; 
     cursor: pointer;
     
+    display: flex; /* Робимо флексом відразу */
     justify-content: center;
     align-items: center;
     
     padding: 0;
-    transition: 0.3s;
     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+
+    /* --- ПОЧАТКОВО ПРИХОВУЄМО ДЛЯ ПЛАВНОЇ ПОЯВИ --- */
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px);
+    transition: all 0.3s ease;
 }
 
 #scrollToTop svg {
@@ -370,7 +328,7 @@ header svg {
 
 #scrollToTop:hover {
     background-color: #ffc107;
-    transform: scale(1.1);
+    transform: translateY(-3px) scale(1.1) !important; /* однаковий ховер з кошиком */
 }
 
 #scrollToTop:hover svg path {
@@ -378,18 +336,11 @@ header svg {
 }
 
 
-.cart-btn-overlay:hover {
-    transform: scale(1.1); /* Ефект при наведенні */
-}
-
-.cart-btn-overlay svg {
-    width: 30px;
-    height: 30px;
-}
+/* ФІКСОВАНА КНОПКА КОШИКА (OVERLAY) */
 .cart-btn-overlay {
     position: fixed; 
     right: 20px;    
-    bottom: 90px;   
+    bottom: 85px; /* Трохи підкоригували відступ, щоб відстань між ними була ідеальною */
     z-index: 1000;   
     
     background-color: #f3c458; 
@@ -398,15 +349,26 @@ header svg {
     width: 50px;
     height: 50px;
     cursor: pointer;
+    
     display: flex;
     align-items: center;
     justify-content: center;
     box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-    transition: transform 0.3s ease;
+
+    /* --- ПОЧАТКОВО ПРИХОВУЄМО ТАК САМО --- */
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px);
+    transition: all 0.3s ease;
 }
 
 .cart-btn-overlay:hover {
    background-color: #ffb100;
+   transform: translateY(-3px) scale(1.1) !important; /* гарний ховер */
+}
+
+.cart-btn-overlay:active, #scrollToTop:active {
+    transform: scale(0.95) !important;
 }
 
 /* Налаштування іконки та лічильника */
@@ -417,12 +379,88 @@ header svg {
 
 .cart-count-overlay {
     position: absolute;
-    top: 5px;
-    right: 5px;
+    top: -2px; /* Підняли трохи вище, щоб не перекривав саму іконку кошика */
+    right: -2px;
     background: red;
     color: white;
     border-radius: 50%;
-    padding: 2px 6px;
-    font-size: 12px;
+    min-width: 18px;
+    height: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
     font-weight: bold;
+    border: 2px solid #f3c458; /* рамка в колір кнопки */
+}
+
+
+/* ОДИН СПІЛЬНИЙ КЛАС ДЛЯ ПОЯВИ ОБОХ КНОПОК */
+#scrollToTop.visible, .cart-btn-overlay.visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+/* Базовий стан бічної панелі */
+.sidebar {
+    position: fixed;
+    top: 0;
+    right: -300px; /* Початково схована за правим краєм */
+    width: 300px;
+    height: 100vh; /* На всю висоту екрана */
+    background-color: #1e1e1e; /* Темний графітовий фон */
+    color: #ffffff;
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.7);
+    transition: right 0.3s ease-in-out; /* Плавна анімація появи */
+    z-index: 99999; /* Гарантує, що панель буде поверх усіх елементів сайту */
+    display: flex;
+    flex-direction: column;
+}
+
+/* Коли додається клас active через JS (ВАЖЛИВО: без пробілу!) */
+.sidebar.active {
+    right: 0 !important; /* Примусово висуваємо панель на екран */
+}
+
+/* Внутрішній контент */
+.sidebar-content {
+    padding: 30px 25px;
+    position: relative;
+}
+
+/* Кнопка закриття (хрестик) */
+.close-btn {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 30px;
+    cursor: pointer;
+    color: #888;
+    line-height: 1;
+}
+.close-btn:hover {
+    color: #ffcc00;
+}
+
+.user-info p {
+    margin: 15px 0;
+    font-size: 16px;
+}
+
+/* Кнопка Вийти */
+.logout-button {
+    background-color: #e63946;
+    color: white;
+    border: none;
+    padding: 12px;
+    width: 100%;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-top: 25px;
+    transition: background 0.2s;
+}
+.logout-button:hover {
+    background-color: #ff4d5a;
 }

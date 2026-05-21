@@ -8,3 +8,201 @@
   margin-top: 1rem;
 }
 
+
+.main-footer {
+    clear: both;
+    background-color: var(--navy);
+    color: var(--white);
+    font-family: 'Montserrat', sans-serif;
+    padding: 60px 0 20px 0;
+    margin-top: 60px;
+    box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.15); 
+}
+
+.footer-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 100%;
+    max-width: auto;
+    padding: 0 80px; /* Точний збіг із шапкою */
+    gap: 40px;
+}
+
+.footer-col {
+    flex: 1;
+    min-width: 220px;
+}
+
+/* Стовпчик 1: Логотип та слоган (Центрування) */
+.footer-about {
+    display: flex;
+    flex-direction: column;
+    align-items: center;     /* Центрує і логотип, і текст по горизонталі */
+    text-align: center;
+    margin-left: -20px;     /* Вирівнює текст по центру, якщо він розіб'ється на два рядки */
+}
+
+/* Сама обгортка посилання логотипу */
+.footer-logo {
+    display: block;
+    margin-bottom: 15px;
+}
+
+/* Картинка всередині */
+.footer-logo img {
+    height: 190px;
+    display: block;
+    margin: 0 auto;          /* Додаткова підстраховка для центрування картинки */
+}
+
+.footer-tagline {
+    font-size: 20px;
+    line-height: 1.6;
+    color: white;
+    font-weight: 500;
+    max-width: 250px;
+    margin: 0 auto;          /* Центрує сам блок із текстом всередині стовпчика */
+}
+/* Стиль для всіх заголовків h3 */
+.main-footer h3 {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--white);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 35px; /* Фіксований відступ для ідеальної лінії */
+}
+
+/* Стовпчик 2: Навігація */
+.footer-links ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.footer-links a {
+    color: var(--white);
+    text-decoration: none;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 16px;
+    letter-spacing: 0.5px;
+    position: relative;
+    transition: all 0.3s ease;
+    padding-bottom: 5px;
+    display: inline-block;
+}
+
+.footer-links a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: var(--gold);
+    transition: width 0.3s ease;
+}
+
+.footer-links a:hover::after {
+    width: 100%;
+}
+
+.footer-links a:hover {
+    color: var(--gold);
+}
+
+/* Стовпчик 3: Контакти */
+.footer-contacts-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px; /* Однаковий великий відступ між усіма підпунктами */
+}
+
+.footer-contacts-list p {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--white);
+    margin: 0;
+}
+
+/* Налаштування для номерів телефонів */
+.footer-contacts-list .phone-link a {
+    color: var(--white) !important;
+    text-decoration: none !important;
+    transition: color 0.3s ease;
+    display: inline-block;
+}
+
+.footer-contacts-list .phone-link a:hover {
+    color: var(--gold) !important;
+}
+
+/* Блок годин роботи */
+.footer-work-hours {
+    display: flex;
+    flex-direction: column;
+}
+
+.hours-label {
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: white;
+    font-weight: 600; 
+    margin-bottom: 0px;
+    margin-top: 20px;
+}
+
+.footer-contacts-list .work-time {
+    color: var(--white);
+    font-size: 16px;
+    font-weight: 600;
+}
+
+/* Стовпчик 4: Карта та адреса */
+.footer-map-block {
+    min-width: 280px;
+}
+
+.footer-map-wrapper {
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    margin-bottom: 15px;
+}
+
+/* Гарна, читабельна золота адреса */
+.footer-address {
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1.4;
+}
+
+/* Нижня панель */
+.footer-bottom {
+    margin-top: 50px;
+    padding: 20px 80px 0 80px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    text-align: center;
+}
+
+.footer-bottom p {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.3);
+    font-weight: 500;
+}
+
+@media (max-width: 992px) {
+    .footer-container {
+        padding: 0 30px;
+        flex-direction: column;
+        gap: 35px;
+    }
+    .footer-bottom {
+        padding: 20px 30px 0 30px;
+    }
+}
