@@ -134,7 +134,6 @@ function updateAuthUI(user) {
     const authBtn = document.getElementById('authBtn');
     if (!authBtn) return;
 
-    // Шукаємо текстовий вузол всередині або міняємо текст самої кнопки
     const authText = authBtn.querySelector('.auth-text');
     if (authText) {
         authText.textContent = "Мій акаунт";
@@ -146,7 +145,6 @@ function updateAuthUI(user) {
     authBtn.style.color = "#ffcc00";
     authBtn.title = `Профіль: ${user.login}`;
 
-    // Заповнюємо дані в бічній панелі профілю, якщо елементи існують
     const sLogin = document.getElementById('sidebar-login');
     const sEmail = document.getElementById('sidebar-email');
     const sRole = document.getElementById('sidebar-role');
@@ -216,7 +214,6 @@ window.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-// Логіка виходу з акаунту
 if (logoutBtn) {
     logoutBtn.addEventListener('click', () => {
         sessionStorage.removeItem('current_user');
@@ -225,7 +222,6 @@ if (logoutBtn) {
     });
 }
 
-// Обробник кошика/замовлення
 const orderButton = document.getElementById('orderBtn');
 if (orderButton) {
     orderButton.addEventListener('click', function () {
@@ -254,12 +250,10 @@ if (orderButton) {
 
 
 
-// Керування появою кнопок скролу та кошика
 const scrollToTopBtn = document.getElementById('scrollToTop');
 const cartOverlayBtn = document.querySelector('.cart-btn-overlay');
 
 window.addEventListener('scroll', () => {
-    // Якщо прокрутили сторінку більше ніж на 300px
     if (window.scrollY > 300) {
         if (scrollToTopBtn) scrollToTopBtn.classList.add('visible');
         if (cartOverlayBtn) cartOverlayBtn.classList.add('visible');
@@ -269,12 +263,11 @@ window.addEventListener('scroll', () => {
     }
 });
 
-// Логіка самого кліку для плавного підйому вгору (про всяк випадок)
 if (scrollToTopBtn) {
     scrollToTopBtn.addEventListener('click', () => {
         window.scrollTo({
             top: 0,
-            behavior: 'smooth' // плавний скрол
+            behavior: 'smooth' 
         });
     });
 }

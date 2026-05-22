@@ -1,4 +1,3 @@
-// Порожній масив, який заповниться після запиту до json-server
 let banersInfo = [];
 
 const container = document.getElementById('carouselContainer'); 

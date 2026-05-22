@@ -93,7 +93,6 @@ function productCard(item) {
             '</div>';
     }
 
-    // Кнопки вибору об'єму виводяться суворо тільки для категорії drinks
     if (item.categoria === "drinks" && item.sizes && item.sizes.length > 0) {
         sizeSelector = '<div class="size-selector">';
         for (let j = 0; j < item.sizes.length; j++) {
@@ -309,7 +308,6 @@ if (searchInput) {
     });
 }
 
-// СЛУХАЧ ДЛЯ ІНІЦІАЛІЗАЦІЇ МЕНЮ
 document.addEventListener('DOMContentLoaded', function () {
     fetchProducts();
 
@@ -394,7 +392,7 @@ function injectAdminModal() {
     setupAdminFormListeners();
 }
 
-// ================= НАВІШУВАННЯ ПОДІЙ ДЛЯ ФОРМИ =================
+
 function setupAdminFormListeners() {
     const adminForm = document.getElementById('admin-product-form');
     const adminModal = document.getElementById('admin-product-modal');
@@ -405,14 +403,12 @@ function setupAdminFormListeners() {
     const drinksBlock = document.getElementById('admin-drinks-sizes-block');
     const addSizeBtn = document.getElementById('add-size-row-btn');
 
-    // Перемикання відображення блоків ціни в залежності від обраної категорії
     if (categorySelect) {
         categorySelect.addEventListener('change', function() {
             toggleAdminPriceFields(this.value);
         });
     }
 
-    // Додавання нового порожнього рядка для об'єму напою
     if (addSizeBtn) {
         addSizeBtn.addEventListener('click', () => {
             addSizeRow("", "");
@@ -431,7 +427,6 @@ function setupAdminFormListeners() {
             let finalSizes = [];
 
             if (category === 'drinks') {
-                // Збираємо дані з усіх створених рядків об'ємів
                 const rows = document.querySelectorAll('.size-input-row');
                 rows.forEach(row => {
                     const name = row.querySelector('.size-name-input').value.trim();
@@ -441,13 +436,12 @@ function setupAdminFormListeners() {
                     }
                 });
 
-                // Якщо адмін додав хоча б один об'єм, виставляємо його як базовий
                 if (finalSizes.length > 0) {
                     finalPrice = finalSizes[0].price;
                     finalWeight = finalSizes[0].name;
                 }
             } else {
-                // Для піци та десертів беремо звичайні поодинокі поля
+
                 finalPrice = parseInt(document.getElementById('admin-prod-price').value) || 0;
                 finalWeight = document.getElementById('admin-prod-weight').value.trim();
             }
@@ -497,7 +491,6 @@ function setupAdminFormListeners() {
     }
 }
 
-// Допоміжна функція керування полями форми
 function toggleAdminPriceFields(category) {
     const standardBlock = document.getElementById('admin-standard-price-block');
     const drinksBlock = document.getElementById('admin-drinks-sizes-block');
@@ -506,12 +499,10 @@ function toggleAdminPriceFields(category) {
     if (category === 'drinks') {
         standardBlock.style.display = 'none';
         drinksBlock.style.display = 'block';
-        
-        // Робимо обов'язковими стандартні інпути неактивними
+
         document.getElementById('admin-prod-price').removeAttribute('required');
         document.getElementById('admin-prod-weight').removeAttribute('required');
 
-        // Якщо жодного варіанту ще немає, додаємо один дефолтний рядок
         if (container && container.children.length === 0) {
             addSizeRow("0.5л", "");
         }
@@ -524,7 +515,6 @@ function toggleAdminPriceFields(category) {
     }
 }
 
-// Допоміжна функція генерації рядка варіантів (Об'єм + Ціна)
 function addSizeRow(nameValue = "", priceValue = "") {
     const container = document.getElementById('sizes-inputs-container');
     if (!container) return;
@@ -558,7 +548,6 @@ window.createNewProduct = function() {
         
         document.getElementById('admin-prod-category').value = "pizza";
         
-        // Викликаємо через перевірку, щоб не було помилки undefined
         if (typeof toggleAdminPriceFields === 'function') {
             toggleAdminPriceFields("pizza");
         }
@@ -574,7 +563,7 @@ window.editProduct = async function(id, event) {
 
     const adminModal = document.getElementById('admin-product-modal');
     const container = document.getElementById('sizes-inputs-container');
-    if (container) container.innerHTML = ""; // очищаємо
+    if (container) container.innerHTML = ""; 
 
     try {
         const response = await fetch(`https://archi-pizza.onrender.com/products/${id}`);
@@ -587,16 +576,13 @@ window.editProduct = async function(id, event) {
         document.getElementById('admin-prod-img').value = product.img;
         document.getElementById('admin-prod-description').value = product.description || "";
 
-        // Викликаємо перемикання полів під завантажену категорію
         toggleAdminPriceFields(product.categoria);
 
         if (product.categoria === 'drinks' && product.sizes && product.sizes.length > 0) {
-            // Якщо це напій з розмірами — заповнюємо динамічні рядки
             product.sizes.forEach(s => {
                 addSizeRow(s.name, s.price);
             });
         } else {
-            // Інакше — заповнюємо стандартні поодинокі поля
             document.getElementById('admin-prod-price').value = product.price;
             document.getElementById('admin-prod-weight').value = product.weight;
         }

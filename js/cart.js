@@ -101,7 +101,6 @@ window.renderCart = function () {
         }
     }
 
-    // Керування доступністю кнопки замовлення в залежності від наповненості кошика
     const orderBtn = document.getElementById('orderBtn');
     if (orderBtn) {
         if (window.cart.length === 0) {
@@ -109,14 +108,13 @@ window.renderCart = function () {
             orderBtn.style.cursor = 'not-allowed';
             orderBtn.title = "Додайте товари в кошик";
         } else {
-            orderBtn.style.backgroundColor = ''; // повертає фірмовий колір з CSS
+            orderBtn.style.backgroundColor = '';
             orderBtn.style.cursor = 'pointer';
             orderBtn.title = "";
         }
     }
 };
 
-// Зміна кількості через індекс (використовується всередині кошика-sidebar)
 window.changeCartQtyViaIndex = function (index, delta) {
     window.cart[index].quantity += delta;
     if (window.cart[index].quantity <= 0) {
@@ -131,7 +129,6 @@ window.changeCartQtyViaIndex = function (index, delta) {
     if (typeof window.updatePreviewProducts === 'function') window.updatePreviewProducts(); 
 };
 
-// Зміна кількості через кнопку на картці (використовує DOM-структуру)
 window.changeCardQty = function(btn, delta) {
     const card = btn.closest('.pizza-card');
     const productId = card.id.replace('product-', ''); 
@@ -171,36 +168,29 @@ window.removeFromCart = function (index) {
     if (typeof window.updatePreviewProducts === 'function') window.updatePreviewProducts(); 
 };
 
-// Ініціалізація іконки кошика при завантаженні скрипта кошика
 document.addEventListener('DOMContentLoaded', () => {
     window.updateCartIcon();
 });
 
 // ================= ОБРОБКА ОФОРМЛЕННЯ ЗАМОВЛЕННЯ =================
 document.addEventListener('click', function(e) {
-    // Перехоплюємо клік по кнопці оформлення замовлення
     if (e.target && e.target.id === 'orderBtn') {
         e.preventDefault();
 
-        // 1. Перевіряємо, чи є взагалі товари в кошику
         if (!window.cart || window.cart.length === 0) {
             alert("Ваш кошик порожній! Додайте щось смачненьке з меню.");
             return;
         }
 
-        // 2. Перевіряємо, чи користувач авторизований
         const user = JSON.parse(sessionStorage.getItem('current_user'));
 
         if (user) {
-            // КОРИСТУВАЧ АВТОРИЗОВАНИЙ:
             console.log("Перенаправлення авторизованого користувача на сторінку оформлення...");
             
-            // Якщо на сторінці є стара функція handleCartOrder — викликаємо її для сумісності
             if (typeof window.handleCartOrder === 'function') {
                 window.handleCartOrder();
             }
 
-            // Перенаправляємо на сторінку замовлення
             window.location.href = 'order.html';
         } else {
             alert("Щоб оформити замовлення, будь ласка, увійдіть у свій акаунт або зареєструйтеся!");

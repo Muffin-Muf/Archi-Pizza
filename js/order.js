@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Автоматично заповнюємо профіль користувача, якщо він залогінений
     const user = JSON.parse(sessionStorage.getItem('current_user'));
     if (user) {
         if (document.getElementById('order-name')) document.getElementById('order-name').value = user.login;
@@ -8,34 +7,28 @@ document.addEventListener('DOMContentLoaded', () => {
 
     renderCheckoutList();
 
-    // ЕЛЕМЕНТИ КЕРУВАННЯ КРОКАМИ
     const block1 = document.getElementById('checkout-block-1');
     const block2 = document.getElementById('checkout-block-2');
     const ind1 = document.getElementById('ind-step-1');
     const ind2 = document.getElementById('ind-step-2');
 
-    // ЕЛЕМЕНТИ ДИНАМІЧНОЇ АДРЕСИ
     const deliveryTypeSelect = document.getElementById('order-delivery-type');
     const addressWrapper = document.getElementById('address-fields-wrapper');
     const addressInput = document.getElementById('order-address');
 
-    // ДИНАМІЧНЕ ХОВАННЯ ПОЛІВ АДРЕСИ
-// ДИНАМІЧНЕ ХОВАННЯ ПОЛІВ АДРЕСИ (ВИПРАВЛЕНО)
+
     if (deliveryTypeSelect && addressWrapper) {
         deliveryTypeSelect.addEventListener('change', function() {
             if (this.value === 'pickup') {
-                // Якщо самовивіз — ховаємо адресу і прибираємо обов'язковість
                 addressWrapper.style.display = 'none';
                 if (addressInput) addressInput.removeAttribute('required');
             } else {
-                // Якщо доставка — показуємо і повертаємо обов'язковість (Тепер працює!)
                 addressWrapper.style.display = 'block';
                 if (addressInput) addressInput.setAttribute('required', '');
             }
         });
     }
 
-    // Клік "Продовжити" -> Перехід на крок 2
     document.getElementById('goToStep2').addEventListener('click', () => {
         const currentCart = JSON.parse(localStorage.getItem('archi_cart')) || [];
         if (currentCart.length === 0) {
@@ -49,7 +42,6 @@ document.addEventListener('DOMContentLoaded', () => {
         ind2.classList.add('active');
     });
 
-    // Клік "Назад" -> Повернення на крок 1
     document.getElementById('backToStep1').addEventListener('click', () => {
         block2.classList.remove('active');
         block1.classList.add('active');
@@ -57,14 +49,12 @@ document.addEventListener('DOMContentLoaded', () => {
         ind1.classList.add('active');
     });
 
-    // ФІНАЛЬНЕ ВІДПРАВЛЕННЯ ФОРМИ
     document.getElementById('final-order-form').addEventListener('submit', async (e) => {
         e.preventDefault();
 
         const currentCart = JSON.parse(localStorage.getItem('archi_cart')) || [];
         const deliveryType = deliveryTypeSelect.value;
         
-        // Збираємо анкетні дані з урахуванням нових змін
         const orderData = {
             userLogin: user ? user.login : "Гість",
             customerSurname: document.getElementById('order-surname').value.trim(),
@@ -72,7 +62,6 @@ document.addEventListener('DOMContentLoaded', () => {
             customerPhone: document.getElementById('order-phone').value.trim(),
             deliveryMethod: deliveryType === 'delivery' ? "Кур'єрська доставка" : "Самовивіз",
             
-            // Якщо самовивіз, адресу записуємо як "Самовивіз", інакше — з інпутів
             address: deliveryType === 'delivery' ? document.getElementById('order-address').value.trim() : "Адреса піцерії (Самовивіз)",
             flat: deliveryType === 'delivery' ? document.getElementById('order-flat').value.trim() : "-",
             payment: deliveryType === 'delivery' ? document.getElementById('order-payment').value : "Оплата при отриманні в піцерії",
@@ -87,7 +76,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         alert(`Дякуємо, ${orderData.customerName}! Ваше замовлення прийнято. ${deliveryType === 'delivery' ? "Кур'єр вже збирається! 🛵" : "Очікуємо на Вас у піцерії! 🍕"}`);
         
-        // Очищаємо кошик після успішного виконання замовлення
         localStorage.removeItem('archi_cart');
         if (window.cart) window.cart = [];
         
@@ -95,7 +83,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-// ФУНКЦІЯ ВИВЕДЕННЯ ТОВАРІВ НА СТОРІНЦІ ОФОРМЛЕННЯ (З ПІДТРИМКОЮ ДОДАТКІВ)
 function renderCheckoutList() {
     const container = document.getElementById('checkout-items-list');
     const totalDisplay = document.getElementById('checkout-total');
@@ -115,7 +102,6 @@ function renderCheckoutList() {
         let itemSum = item.price * item.quantity;
         totalSum += itemSum;
 
-        // ДИНАМІЧНА ПЕРЕВІРКА ТА ГЕНЕРАЦІЯ ДОДАТКІВ
         let addonsHtml = "";
         if (item.addons && item.addons.length > 0) {
             addonsHtml = `
